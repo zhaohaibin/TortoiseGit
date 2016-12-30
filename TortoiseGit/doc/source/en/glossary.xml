@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glossary SYSTEM "../dtd/dblite.dtd">
+<!--
+ Enter Glossary definitions in alphabetical Order! 
+ DocBook doesn't sort them automatically.
+-->
+<glossary id="tgit-glossary">
+	<title>Glossary</title>
+	<glossentry>
+		<glossterm>Add</glossterm>
+		<glossdef>
+			<para>
+				A Git command that is used to add a
+				file or directory to your working tree.
+				The new items are added to the repository when you commit.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>BASE revision</glossterm>
+		<glossdef>
+			<para>
+				The current base revision of a file or folder in your <emphasis>working tree</emphasis>. 
+				This is the revision the file or folder was in, when the last checkout,
+				update or commit was run. The BASE revision is normally not equal to the
+				HEAD revision.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Blame</glossterm>
+		<glossdef>
+			<para>
+				This command is for text files only, and it annotates every line to
+				show the repository revision in which it was last changed, and the
+				author who made that change. Our GUI implementation is called
+				TortoiseGitBlame and it also shows the commit date/time and the
+				log message when you hover the mouse of the revision number.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Branch</glossterm>
+		<glossdef>
+			<para>
+				A term frequently used in revision control systems to describe
+				what happens when development forks at a particular point and
+				follows 2 separate paths. You can create a branch off the main
+				development line so as to develop a new feature without rendering
+				the main line unstable. Or you can branch a stable release to which
+				you make only bug fixes, while new developments take place on the
+				unstable trunk. In Git a branch is implemented as a
+				<quote>pointer to a revision</quote>.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Clone</glossterm>
+		<glossdef>
+			<para>
+				A Git command which creates a local working tree in an empty
+				directory by downloading a remote repository.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Cleanup</glossterm>
+		<glossdef>
+			<para>
+				Remove untracked files from the working tree.
+			</para>
+			<para>
+				<emphasis>This is different to TortoiseSVN cleanup</emphasis>
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Commit</glossterm>
+		<glossdef>
+			<para>
+				This Git command is used to pass the changes in your local
+				working tree back into the repository, creating a new repository
+				revision.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Conflict</glossterm>
+		<glossdef>
+			<para>
+				When changes from the repository are merged with local changes, 
+				sometimes those changes occur on the same lines. In this case
+				Git cannot automatically decide which version to use and
+				the file is said to be in conflict. You have to edit the file manually
+				and resolve the conflict before you can commit any further changes.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Copy</glossterm>
+		<glossdef>
+			<para>
+				In a Git repository you can create a copy of a single file
+				or an entire tree.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Delete</glossterm>
+		<glossdef>
+			<para>
+				When you delete a versioned item (and commit the change) the item
+				no longer exists in the repository after the committed revision.
+				But of course it still exists in earlier repository revisions,
+				so you can still access it. If necessary, you can copy a deleted
+				item and <quote>resurrect</quote> it complete with history.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Diff</glossterm>
+		<glossdef>
+			<para>
+				Shorthand for <quote>Show Differences</quote>. Very useful when
+				you want to see exactly what changes have been made.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Export</glossterm>
+		<glossdef>
+			<para>
+				This command produces an compressed archive of all versioned files (of a specific revision).
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>GPO</glossterm>
+		<glossdef>
+			<para>
+				Group policy object
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>HEAD revision</glossterm>
+		<glossdef>
+			<para>
+				The latest revision of a file or folder in the <emphasis>repository</emphasis>.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Log</glossterm>
+		<glossdef>
+			<para>
+				Show the revision history of a file or folder.
+				Also known as <quote>History</quote>.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>History</glossterm>
+		<glossdef>
+			<para>
+				Show the revision history of a file or folder.
+				Also known as <quote>Log</quote>.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Merge</glossterm>
+		<glossdef>
+			<para>
+				The process by which changes from the repository are added to your
+				working tree without disrupting any changes you have already made
+				locally. Sometimes these changes cannot be reconciled automatically
+				and the working tree is said to be in conflict.
+			</para>
+			<para>
+				Merging happens automatically when you update your working tree.
+				You can also merge specific changes from another branch using
+				TortoiseGit's Merge command.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Patch</glossterm>
+		<glossdef>
+			<para>
+				If a working tree has changes to text files only, it is possible
+				to use Git's Diff command to generate a single file summary
+				of those changes in Unified Diff format. A file of this type is often
+				referred to as a <quote>Patch</quote>, and it can be emailed to someone
+				else (or to a mailing list) and applied to another working tree.
+				Someone without commit access can make changes and submit a patch
+				file for an authorized committer to apply. Or if you are unsure about
+				a change you can submit a patch for others to review.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Repository</glossterm>
+		<glossdef>
+			<para>
+				A repository is a place where data is stored and maintained. 
+				A repository can be a place where multiple databases or files are located for 
+				distribution over a network, or a repository can be a location that is 
+				directly accessible to the user without having to travel across a network.
+				Git is a distributed version control system.
+				A Git repository does not require network to work with most operations.
+				Network is required only when you need to synchronize changes with remote repositories.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Resolve</glossterm>
+		<glossdef>
+			<para>
+				When files in a working tree are left in a conflicted state following
+				a merge, those conflicts must be sorted out by a human using an editor
+				(or perhaps TortoiseGitMerge). This process is referred to as
+				<quote>Resolving Conflicts</quote>. When this is complete you can mark
+				the conflicted files as being resolved, which allows them to be committed.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Revert</glossterm>
+		<glossdef>
+			<para>
+				If you have made changes
+				and decide you want to undo them, you can use the <quote>revert</quote>
+				command to go back to the version from HEAD.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Revision</glossterm>
+		<glossdef>
+			<para>
+				Every time you commit a set of changes, you create one new
+				<quote>revision</quote> in the repository. Each revision represents
+				the state of the repository tree at a certain point in its history.
+				If you want to go back in time you can examine the repository as
+				it was at revision N.
+			</para>
+			<para>
+				In another sense, a revision can refer to the set of changes that
+				were made when that revision was created.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>SVN</glossterm>
+		<glossdef>
+			<para>
+				A frequently-used abbreviation for Subversion.
+			</para>
+			<para>
+				TortoiseGit provides git-svn interoperability.
+				You can fetch partial or whole history from an SVN remote and store as a local git repository.
+				This allows you to browse the history and create commits locally.
+				You can finally commit your changes to an SVN remote.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Switch/Checkout</glossterm>
+		<glossdef>
+			<para>
+				Just as <quote>Update-to-revision</quote> changes the time
+				window of a working tree to look at a different point in history,
+				so <quote>Switch</quote> changes the space window of a working tree
+				so that it points to a different part of the repository.
+				It is particularly useful when working on master and branches where
+				only a few files differ. You can switch your working tree between
+				the two and only the changed files will be updated.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Update</glossterm>
+		<glossdef>
+			<para>
+				This Git command pulls down the latest changes from the
+				repository into your working tree, merging any changes made by
+				others with local changes in the working tree.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Working Copy</glossterm>
+		<glossdef>
+			<para>
+				See <quote>Working Tree</quote>.
+			</para>
+		</glossdef>
+	</glossentry>
+	<glossentry>
+		<glossterm>Working Tree</glossterm>
+		<glossdef>
+			<para>
+				This is your local <quote>sandbox</quote>, the area where you
+				work on the versioned files, and it normally resides on your
+				local hard disk. You create a working tree by doing a
+				<quote>Clone</quote> of a repository, and you feed your
+				changes back into the repository using <quote>Commit</quote>.
+			</para>
+		</glossdef>
+	</glossentry>
+</glossary>
+<!--
+local variables: 
+sgml-parent-document: ("book.xml" "glossary")
+end:
+-->

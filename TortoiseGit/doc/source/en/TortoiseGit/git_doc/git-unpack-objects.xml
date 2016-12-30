@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect2 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<sect2 lang="en" id="git-unpack-objects(1)">
+    <title>git-unpack-objects(1)</title>
+<indexterm>
+<primary>git-unpack-objects(1)</primary>
+</indexterm>
+<simplesect id="git-unpack-objects(1)__name">
+<title>NAME</title>
+<simpara>git-unpack-objects - Unpack objects from a packed archive</simpara>
+</simplesect>
+<simplesect id="git-unpack-objects(1)__synopsis">
+<title>SYNOPSIS</title>
+<blockquote>
+<literallayout><emphasis>git unpack-objects</emphasis> [-n] [-q] [-r] [--strict]</literallayout>
+</blockquote>
+</simplesect>
+<simplesect id="git-unpack-objects(1)__description">
+<title>DESCRIPTION</title>
+<simpara>Read a packed archive (.pack) from the standard input, expanding
+the objects contained within and writing them into the repository in
+"loose" (one object per file) format.</simpara>
+<simpara>Objects that already exist in the repository will <emphasis role="strong">not</emphasis> be unpacked
+from the packfile.  Therefore, nothing will be unpacked if you use
+this command on a packfile that exists within the target repository.</simpara>
+<simpara>See <xref linkend="git-repack(1)" /> for options to generate
+new packs and replace existing ones.</simpara>
+</simplesect>
+<simplesect id="git-unpack-objects(1)__options">
+<title>OPTIONS</title>
+<variablelist>
+<varlistentry>
+<term>
+-n
+</term>
+<listitem>
+<simpara>
+        Dry run.  Check the pack file without actually unpacking
+        the objects.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-q
+</term>
+<listitem>
+<simpara>
+        The command usually shows percentage progress.  This
+        flag suppresses it.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-r
+</term>
+<listitem>
+<simpara>
+        When unpacking a corrupt packfile, the command dies at
+        the first corruption.  This flag tells it to keep going
+        and make the best effort to recover as many objects as
+        possible.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+--strict
+</term>
+<listitem>
+<simpara>
+        Don't write objects with broken content or links.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</simplesect>
+<simplesect id="git-unpack-objects(1)__git">
+<title>GIT</title>
+<simpara>Part of the <xref linkend="git(1)" /> suite</simpara>
+</simplesect>
+</sect2>

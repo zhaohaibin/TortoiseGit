@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE appendix SYSTEM "../../dtd/dblite.dtd">
+<appendix id="tgit-automation">
+	<title>Automating TortoiseGit</title>
+	<simplesect>
+		<para>
+			Since all commands for TortoiseGit are controlled through command
+			line parameters, you can automate it with batch scripts or start specific
+			commands and dialogs from other programs (e.g. your favourite text editor).
+		</para>
+		<important>
+		<para>
+			Remember that TortoiseGit is a GUI client, and this automation guide
+			shows you how to make the TortoiseGit dialogs appear to collect user
+			input. If you want to write a script which requires no input, you should
+			use the official Git command line client instead.
+		</para>
+		</important>
+	</simplesect>
+	<!-- ================================================================= -->
+	<!-- ======================== SECTION 1 ============================== -->
+	<!-- ================================================================= -->
+	<sect1 id="tgit-automation-basics">
+		<title>TortoiseGit Commands</title>
+		<indexterm>
+			<primary>automation</primary>
+		</indexterm>
+		<indexterm>
+			<primary>command line</primary>
+		</indexterm>
+		<para>
+			The TortoiseGit GUI program is called <literal>TortoiseGitProc.exe</literal>.
+			All commands are specified with the parameter <option>/command:abcd</option>
+			where <literal>abcd</literal> is the required command name. Most of these
+			commands need at least one path argument, which is given with 
+			<option>/path:"some\path"</option>. In the following table the command 
+			refers to the <option>/command:abcd</option> parameter and the path
+			refers to the <option>/path:"some\path"</option> parameter.
+		</para>
+		<para>
+			Since some of the commands can take a list of target paths (e.g. committing
+			several specific files) the <option>/path</option> parameter can take
+			several paths, separated by a <literal>*</literal> character.
+		</para>
+		<para>
+			TortoiseGit uses temporary files to pass multiple arguments between
+			the shell extension and the main program. From TortoiseGit 1.5.0 on and later,
+			<option>/notempfile</option> parameter is obsolete and there is no need
+			to add it anymore.
+		</para>
+		<para>
+			The progress dialog which is used for commits, updates and many more git.exe commands
+			usually stays open after the command has finished until the user presses
+			the <guibutton>OK</guibutton> button. This can be changed in the settings dialog.
+			You may use <option>/closeonend</option> parameter to override the this setting
+			from your batch file.
+		</para>
+		<para>
+			To close the (git.exe) progress dialog at the end of a command automatically without
+			using the permanent setting you can pass the <option>/closeonend</option>
+			parameter.
+			<itemizedlist>
+				<listitem>
+					<para>
+						<option>/closeonend:0</option> Close manually
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<option>/closeonend:1</option> Auto-close if no further options are available
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<option>/closeonend:2</option> Auto-close if no errors
+					</para>
+				</listitem>
+<!--
+				<listitem>
+					<para>
+						<option>/closeonend:3</option> auto close if no errors, conflicts and merges
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<option>/closeonend:4</option> auto close if no errors, conflicts and merges
+						for local operations
+					</para>
+				</listitem>
+-->
+			</itemizedlist>
+		</para>
+		<para>
+			The table below lists all the commands which can be accessed
+			using the TortoiseGitProc.exe command line. As described above,
+			these should be used in the form <literal>/command:abcd</literal>.
+			In the table, the <literal>/command</literal> prefix is omitted
+			to save space.
+		</para>
+<!--
+ATTENTION ATTENTION ATTENTION ATTENTION ATTENTION ATTENTION ATTENTION ATTENTION
+Don't touch these lines:
+<entry condition="pot">:about</entry>
+
+  The condition="pot" prevents the strings from being extracted into
+	the .pot file, so nobody translates them.
+  The colons in front of the command have to stay there to prevent these strings
+  from being translated if the po file "by chance" contains a matching translation.
+-->
+		<para>
+			<table id="tgit-automation-1-table">
+				<title>List of available commands and options</title>
+				<tgroup cols="2">
+					<colspec colnum="1" colwidth="2*"/>
+					<colspec colnum="2" colwidth="6*"/>
+					<thead>
+						<row>
+							<entry>Command</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry condition="pot">:about</entry>
+							<entry>
+								Shows the about dialog. This is also shown if no
+								command is given.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:bisect</entry>
+							<entry>
+								Allows to control the <link linkend="tgit-dug-bisect">bisect logic</link> of TortoiseGit.
+								Use the <option>/start</option> parameter to start a bisect you can specify <option>/good:REF</option> and <option>/bad:REF</option> here).
+								When bisect is active, you can use <option>/good</option>, <option>/bad</option> and <option>/reset</option> to control the bisect process.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:fetch</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-pull">fetch dialog</link>.
+								Use the <option>/remote</option> parameter to control the remote which should be pre-selected.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:firststart</entry>
+							<entry>
+								Shows the first start wizard.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:log</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-showlog">log dialog</link>. The <option>/path</option> specifies the
+								file or folder for which the log should be shown.
+								Additional options can be set:
+								<option>/rev:"SHA1"</option> highlights and automatically scrolls to the specified revision,
+								<option>/endrev:"SHA1/branch"</option>, shows the log of the specified revision,
+								<option>/startrev:"SHA1/branch"</option> (only in combination with endrev), shows the log of the revision range startrev..endrev,
+								<option>/range:"gitrevision"</option>, shows the log of the entered gitrevision (e.g. "branch1...branch2"),
+								<option>/limit:"N SCALE"</option>, SCALE could be "Commit", "Year", "Month", "Week";
+								it shows last N commit(s), last N year(s), last N month(s), last N week(s).
+								Use <option>/limit:0</option> to disable any default limit.
+								<option>/findstring:"filterstring"</option> fills in the filter text,
+								<option>/findtext</option> forces the filter to use text, not regex, or
+								<option>/findregex</option> forces the filter to use regex, not simple text search, and
+								<option>/findtype:X</option> with X being a number between 0 and 127. The numbers
+								are the sum of the following options:
+								<itemizedlist>
+									<listitem>
+										<para>
+											<option>/findtype:0</option> filter by everything
+										</para>
+									</listitem>
+									<listitem>
+										<para>
+											<option>/findtype:1</option> filter by messages
+										</para>
+									</listitem>
+									<listitem>
+										<para>
+											<option>/findtype:2</option> filter by path
+										</para>
+									</listitem>
+									<listitem>
+										<para>
+											<option>/findtype:4</option> filter by authors
+										</para>
+									</listitem>
+									<listitem>
+										<para>
+											<option>/findtype:8</option> filter by revisions
+										</para>
+									</listitem>
+									<listitem>
+										<para>
+											<option>/findtype:16</option> not used
+										</para>
+									</listitem>
+									<listitem>
+										<para>
+											<option>/findtype:32</option> filter by bug ID
+										</para>
+									</listitem>
+									<listitem>
+										<para>
+											<option>/findtype:64</option> filter by subject
+										</para>
+									</listitem>
+								</itemizedlist>
+								If <option>/outfile:path\to\file</option> is specified,
+								the selected revision is written to that file when
+								the log dialog is closed.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:clone</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-clone">clone dialog</link>.
+								The <option>/url</option> specifies the URL to clone from.
+								The <option>/path</option> specifies the target directory
+								to clone to.
+								If <option>/exactpath</option> is not specfied, the 
+								repository name (without trailing .git) will be appended to
+								target directory. This is the default behaviour.
+								If <option>/exactpath</option> is specfied, the 
+								exact <option>/path</option> is considered the target directory,
+								without appending repository name to it.
+							</entry>
+						</row>
+						<!--
+						<row>
+							<entry condition="pot">:import</entry>
+							<entry>
+								Opens the import dialog. The <option>/path</option>
+								specifies the directory with the data to import.
+							</entry>
+						</row>
+						-->
+						<!--
+						<row>
+							<entry condition="pot">:update</entry>
+							<entry>
+								Updates the working tree in <option>/path</option> to
+								HEAD. If the option <option>/rev</option> is given
+								then a dialog is shown to ask the user to which
+								revision the update should go. To avoid the dialog
+								specify a revision number <option>/rev:1234</option>.
+								Other options are <option>/nonrecursive</option> and
+								<option>/ignoreexternals</option>.
+							</entry>
+						</row>
+						-->
+						<row>
+							<entry condition="pot">:commit</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-commit">commit dialog</link>. The <option>/path</option> specifies the
+								target directory or the list of files to commit.
+								You can also specify the <option>/logmsg</option> switch
+								to pass a predefined log message to the commit dialog.
+								Or, if you don't want to pass the log message on the
+								command line, use <option>/logmsgfile:path</option>,
+								where <option>path</option>
+								points to a file containing the log message.
+								To pre-fill the bug ID box (in case you've set up
+								integration with bug trackers properly), you can use
+								the <option>/bugid:"the bug id here"</option> to
+								do that.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:add</entry>
+							<entry>
+								Adds the files in <option>/path</option> to
+								version control.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:revert</entry>
+							<entry>
+								Reverts local modifications of a working tree.
+								The <option>/path</option> tells which items
+								to revert.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:cleanup</entry>
+							<entry>
+								<link linkend="tgit-dug-cleanup">Cleans up the working tree</link> in <option>/path</option>.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:resolve</entry>
+							<entry>
+								Marks a conflicted file specified in 
+								<option>/path</option> as resolved. If 
+								<option>/noquestion</option> is given, then resolving
+								is done without asking the user first if it really
+								should be done.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:repocreate</entry>
+							<entry>
+								<link linkend="tgit-dug-create">Creates a repository</link> in <option>/path</option>
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:switch</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-checkout">switch dialog</link>. The <option>/path</option> specifies the
+								target directory.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:export</entry>
+							<entry>
+								<link linkend="tgit-dug-export">Exports a revision</link> of the repository in <option>/path</option>
+								to a zip file.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:merge</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-merge">merge dialog</link>. The <option>/path</option> specifies the
+								target directory.
+							</entry>
+						</row>
+						<!--
+						<row>
+							<entry condition="pot">:copy</entry>
+							<entry>
+								Brings up the branch/tag dialog.
+								The <option>/path</option>
+								is the working tree to branch/tag from.
+								And the <option>/url</option> is the
+								target URL.
+								You can also specify the <option>/logmsg</option> switch
+								to pass a predefined log message to the branch/tag dialog.
+								Or, if you don't want to pass the log message on the
+								command line, use <option>/logmsgfile:path</option>,
+								where <option>path</option>
+								points to a file containing the log message.
+							</entry>
+						</row>
+						-->
+						<row>
+							<entry condition="pot">:settings</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-settings">settings dialog</link>.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:remove</entry>
+							<entry>
+								Removes the file(s) in <option>/path</option> from
+								version control.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:rename</entry>
+							<entry>
+								Renames the file in <option>/path</option>. The new
+								name for the file is asked with a dialog.
+<!--
+								To avoid the question about renaming similar files
+								in one step, pass <option>/noquestion</option>.
+-->
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:diff</entry>
+							<entry>
+								Starts the external diff program specified in the
+								TortoiseGit settings. The <option>/path</option>
+								specifies the first file.
+								If the option <option>/path2</option>
+								is set, then the diff program is started with those
+								two files. If <option>/path2</option> is omitted,
+								then the diff is done between the file in
+								<option>/path</option> and its BASE.
+								To explicitly set the revision use
+								<option>/startrev:xxx</option> and
+								<option>/endrev:xxx</option>.
+								Add <option>/unified</option> to get a unified diff.
+								Add <option>/line:NN</option> to get scroll to the mentioned line.
+<!--
+								If <option>/blame</option> is set and <option>/path2</option>
+								is not set, then the diff is done by first blaming 
+								the files with the given revisions.
+-->
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:showcompare</entry>
+							<entry>
+								<para>
+								Depending on revisions to compare and the path, this
+								either shows a unified diff (if the option <option>unified</option> is set), 
+								a dialog with a list of files that have changed (filtered by a possibly entered subpath) or if 
+								the path point to a file starts the diff viewer for 
+								those the file in the different revisions.
+								Use <option>/revision1:xxx</option> and <option>/revision2:xxx</option> to specify the revisions to compare,
+								whereas <option>/revision1:xxx</option> indicates the base revision to compare with.
+								</para>
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:conflicteditor</entry>
+							<entry>
+								Starts the conflict editor specified in the TortoiseGit
+								settings with the correct files for the conflicted
+								file in <option>/path</option>.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:help</entry>
+							<entry>
+								Opens the help file.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:repostatus</entry>
+							<entry>
+								Opens the check-for-modifications dialog. The <option>/path</option>
+								specifies the working tree directory.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:repobrowser</entry>
+							<entry>
+								Starts the <link linkend="tgit-dug-repobrowser">repository browser dialog</link>, pointing to
+								the working tree given in <option>/path</option>.
+								An additional option <option>/rev:xxx</option> can
+								be used to specify the revision which the repository
+								browser should show. If the <option>/rev:xxx</option>
+								is omitted, it defaults to HEAD.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:ignore</entry>
+							<entry>
+								Adds all targets in <option>/path</option> to the
+								ignore list, i.e. adds file(s) to the <literal>.gitignore</literal>
+								file.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:blame</entry>
+							<entry>
+								<para>
+								Opens <link linkend="tgit-dug-blame">TortoiseGitBlame</link> for the file specified 
+								in <option>/path</option>.
+								</para>
+								<para>
+								If the option <option>/endrev</option> is set TortoiseGitBlame
+								ends at that revision.
+								</para>
+								<para>
+								If the option <option>/line:nnn</option> is set,
+								TortoiseGitBlame will open with the specified line
+								number showing.
+								</para>
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:cat</entry>
+							<entry>
+								Saves a file from an URL or working tree path given
+								in <option>/path</option> to the location given in
+								<option>/savepath:path</option>. The revision is
+								given in <option>/revision:xxx</option>. This can
+								be used to get a file with a specific revision.
+							</entry>
+						</row>
+<!--
+						<row>
+							<entry condition="pot">:createpatch</entry>
+							<entry>
+								Creates a patch file for the path given in
+								<option>/path</option>.
+							</entry>
+						</row>
+-->
+						<row>
+							<entry condition="pot">:pull</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-pull">pull dialog</link> in the working tree located in
+								<option>/path</option>.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:push</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-push">push dialog</link> in the working tree located in
+								<option>/path</option>.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:rebase</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-rebase">rebase dialog</link> for the working tree located in
+								<option>/path</option>.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:stashsave</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-stash">stash save dialog</link> for the working tree located in
+								<option>/path</option>. A prefilled mesage can be achieved by using the <option>/msg</option> parameter.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:stashapply</entry>
+							<entry>
+								Applies to latest stash to the working tree located in
+								<option>/path</option>.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:stashpop</entry>
+							<entry>
+								Applies to latest stash to the working tree located in
+								<option>/path</option> and drops the latest stash entry.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:subadd</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-submodules">submodule add dialog</link>.
+								<option>/path</option>.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:subupdate</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-submodules">submodule update dialog</link> for and filters the submodules regarding the folder
+								<option>/path</option>.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:subsync</entry>
+							<entry>
+								Syncs the submodule information for the working tree located in
+								<option>/path</option>.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:reflog</entry>
+							<entry>
+								Opens the reflog dialog for the repository located in <option>/path</option>.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:refbrowse</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-browse-ref">browse references dialog</link> for the repository located in
+								<option>/path</option>.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:updatecheck</entry>
+							<entry>
+								<option>/visible</option>: Shows the dialog even if no newer TortoiseGit version is available.
+								<option>/force</option>: Shows file list for download even if the latest TortoiseGit has been installed.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:revisiongraph</entry>
+							<entry>
+								Shows the <link linkend="tgit-dug-revgraph">revision graph</link> for the repository given in
+								<option>/path</option>.
+								<para>
+								To create an image file of the revision graph for a specific path, but
+								without showing the graph window, pass <option>/output:path</option>
+								with the path to the output file. The output file must have
+								an extension that the revision graph can actually
+								export to. These are:
+								<literal>.svg</literal>,
+								<literal>.wmf</literal>,
+								<literal>.gv</literal>,
+								<literal>.png</literal>,
+								<literal>.jpg</literal>,
+								<literal>.bmp</literal> and
+								<literal>.gif</literal>.
+								</para>
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:daemon</entry>
+							<entry>
+								Launches the <link linkend="tgit-dug-daemon">Git Daemon</link> for the repository given in
+								<option>/path</option>.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:pgpfp</entry>
+							<entry>
+								Prints the TortoiseGit Release Signing Key fingerprint. If you trust the current TortoiseGit installation, this can be used as a trust anchor to future releases.
+							</entry>
+						</row>
+						<!--
+						<row>
+							<entry condition="pot">:rebuildiconcache</entry>
+							<entry>
+								Rebuilds the windows icon cache. Only use this in
+								case the windows icons are corrupted. A side effect
+								of this (which can't be avoided) is that the icons
+								on the desktop get rearranged.
+								To suppress the message box, pass <option>/noquestion</option>.
+							</entry>
+						</row>
+						-->
+						<row>
+							<entry condition="pot">:tag</entry>
+							<entry>
+								Opens the <link linkend="tgit-dug-branchtag">Create Tag dialog</link>. The <option>/path</option> specifies the
+								repository folder.
+								Additional options can be set:
+								<option>/rev:"ref"</option> tags on the specified ref/commit,
+								<option>/name:"tag_name"</option> fills the Tag name in Create Tag dialog.
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</para>
+		<para>
+			Examples (which should be entered on one line):
+<screen>
+TortoiseGitProc.exe /command:commit
+                 /path:"d:\git_wc\file1.txt*c:\git_wc\file2.txt"
+                 /logmsg:"test log message" /closeonend:2
+
+TortoiseGitProc.exe /command:log /path:"c:\git_wc\file1.txt"
+                 /startrev:master~100 /endrev:master
+</screen>
+		</para>
+		<para>
+			<tip>
+				<para>
+					When calling TortoiseGit from within the msys environment, you can also use more *nix style command line parameters:
+					<screen>
+TortoiseGitProc.exe -command commit
+                    -path "d:\git_wc\file1.txt*c:\git_wc\file2.txt"
+                    -logmsg "test log message" -closeonend 2
+					</screen>
+				</para>
+			</tip>
+		</para>
+	</sect1>
+
+	<sect1 id="tgit-automation-idiff">
+		<title>TortoiseGitIDiff Commands</title>
+		<indexterm>
+			<primary>automation</primary>
+		</indexterm>
+		<indexterm>
+			<primary>command line</primary>
+		</indexterm>
+		<para>
+			The image diff tool has a few command line options which you
+			can use to control how the tool is started.
+			The program is called <literal>TortoiseGitIDiff.exe</literal>.
+		</para>
+		<para>
+			The table below lists all the options which can be passed
+			to the image diff tool on the command line.
+		</para>
+<!--
+ATTENTION ATTENTION ATTENTION ATTENTION ATTENTION ATTENTION ATTENTION ATTENTION
+Don't touch these lines:
+<entry condition="pot">:about</entry>
+
+  The condition="pot" prevents the strings from being extracted into
+	the .pot file, so nobody translates them.
+  The colons in front of the command have to stay there to prevent these strings
+  from being translated if the po file "by chance" contains a matching translation.
+-->
+		<para>
+			<table id="tgit-automation-idiff-1-table">
+				<title>List of available options</title>
+				<tgroup cols="2">
+					<colspec colnum="1" colwidth="2*"/>
+					<colspec colnum="2" colwidth="6*"/>
+					<thead>
+						<row>
+							<entry>Option</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry condition="pot">:left</entry>
+							<entry>
+								Path to the file shown on the left.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:lefttitle</entry>
+							<entry>
+								A title string. This string is used in the image view
+								title instead of the full path to the image file.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:right</entry>
+							<entry>
+								Path to the file shown on the right.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:righttitle</entry>
+							<entry>
+								A title string. This string is used in the image view
+								title instead of the full path to the image file.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:overlay</entry>
+							<entry>
+								If specified, the image diff tool switches
+								to the overlay mode (alpha blend).
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:fit</entry>
+							<entry>
+								If specified, the image diff tool fits both
+								images together.
+							</entry>
+						</row>
+						<row>
+							<entry condition="pot">:showinfo</entry>
+							<entry>
+								Shows the image info box.
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+		</para>
+		<para>
+			Example (which should be entered on one line):
+<screen>
+TortoiseGitIDiff.exe /left:"c:\images\img1.jpg" /lefttitle:"image 1"
+                  /right:"c:\images\img2.jpg" /righttitle:"image 2"
+                  /fit /overlay
+</screen>
+		</para>
+	</sect1>
+
+</appendix>

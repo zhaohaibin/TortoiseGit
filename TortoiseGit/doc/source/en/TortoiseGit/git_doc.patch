@@ -1,0 +1,219 @@
+Generating git docbook documentation: (done on Debian SID)
+- Clone git
+- apply patch
+- change (system/global) asciidoc.conf
+  - comment:
+    (?su)(?<!\w)[\\]?(?P<name>http|https|ftp|file|irc|mailto|callto|image|link|anchor|xref|indexterm):(?P<target>\S*?)\[(?P<attrlist>.*?)\]=
+    lsquo=&#8216;
+    rsquo=&#8217;
+    ldquo=&#8220;
+    rdquo=&#8221;
+    (^-- )=&#8212;&#8201;
+    (\n-- )|( -- )|( --\n)=&#8201;&#8212;&#8201;
+    (\w)--(\w)=\1&#8212;\2
+    (\w)'(\w)=\1&#8217;\2
+- make xml
+- take *.xml files
+
+diff --git a/Documentation/Makefile b/Documentation/Makefile
+index 9ad6a6a..adfe07a 100644
+--- a/Documentation/Makefile
++++ b/Documentation/Makefile
+@@ -216,6 +216,8 @@ all: html man
+ 
+ html: $(DOC_HTML)
+ 
++xml: cmd-list.perl $(MAN_XML) user-manual.xml
++
+ man: man1 man5 man7
+ man1: $(DOC_MAN1)
+ man5: $(DOC_MAN5)
+@@ -330,7 +332,7 @@ manpage-base-url.xsl: manpage-base-url.xsl.in
+ 
+ %.xml : %.txt asciidoc.conf
+ 	$(QUIET_ASCIIDOC)$(RM) $@+ $@ && \
+-	$(TXT_TO_XML) -d manpage -o $@+ $< && \
++	$(TXT_TO_XML) -d article -o $@+ $< && \
+ 	mv $@+ $@
+ 
+ user-manual.xml: user-manual.txt user-manual.conf
+diff --git a/Documentation/asciidoc.conf b/Documentation/asciidoc.conf
+index 2c16c53..5b98e06
+--- a/Documentation/asciidoc.conf
++++ b/Documentation/asciidoc.conf
+@@ -9,6 +9,7 @@
+ 
+ [macros]
+ (?su)[\\]?(?P<name>linkgit):(?P<target>\S*?)\[(?P<attrlist>.*?)\]=
++(?su)[\\]?(?P<name>link):(?P<target>\S*?)\[(?P<attrlist>.*?)\]=
+ 
+ [attributes]
+ asterisk=&#42;
+@@ -31,12 +32,94 @@ ifdef::backend-docbook[]
+ endif::backend-docbook[]
+ 
+ ifdef::backend-docbook[]
++[header-declarations]
++<?xml version="1.0" encoding="{encoding}"?>
++<!DOCTYPE {doctype-article?sect2}{doctype-book?book}{doctype-manpage?refentry} PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
++
++ifdef::doctype-article[]
++[header]
++template::[header-declarations]
++
++<sect2 lang="{lang=en}" id="{doctitle}">
++template::[docinfo]
++<indexterm>
++<primary>{doctitle}</primary>
++</indexterm>
++
++[footer]
++</sect2>
++
++[callout-inlinemacro]
++# Callout.
++<co id="{docname}_{coid}"/>
++
++[listtags-callout]
++list=<calloutlist{id? id="{docname}_{id}"}{role? role="{role}"}{reftext? xreflabel="{reftext}"}>{title?<title>{title}</title>}|</calloutlist>
++item=<callout arearefs="{docname}_{coids}">|</callout>
++text=<para>|</para>
++
++# [[id,text]]
++[anchor2-inlinemacro]
++<anchor id="{doctitle}_{1}" xreflabel="{2=[{1}]}"/>
++# [[[id]]]
++[anchor3-inlinemacro]
++<anchor id="{doctitle}_{1}" xreflabel="[{1}]"/>[{1}]
++# <<id,text>>
++[xref2-inlinemacro]
++<link linkend="{doctitle}_{1}">{2}</link>
++{2%}<xref linkend="{doctitle}_{1}"/>
++
++[appendix]
++<sect3{id? id="{doctitle}_{id}"}{role? role="{role}"}{reftext? xreflabel="{reftext}"}>
++<title>{title}</title>
++|
++</sect3>
++
++[linkgit-inlinemacro]
++{0%{target}}
++<xref linkend="{target}({0})" />
++
++[link-inlinemacro]
++{0%{target}}
++<ulink url="https://www.kernel.org/pub/software/scm/git/docs/{target}"><citetitle>{0}</citetitle></ulink>
++
++[sect1]
++<simplesect{id? id="{doctitle}_{id}"}{role? role="{role}"}{reftext? xreflabel="{reftext}"}>
++<title>{title}</title>
++|
++</simplesect>
++
++[sect2]
++<section{id? id="{doctitle}_{id}"}{role? role="{role}"}{reftext? xreflabel="{reftext}"}>
++<title>{title}</title>
++|
++</section>
++
++[sect3]
++<section{id? id="{doctitle}_{id}"}{role? role="{role}"}{reftext? xreflabel="{reftext}"}>
++<title>{title}</title>
++|
++</section>
++
++[literal-inlinemacro]
++# Inline literal.
++<emphasis>{passtext}</emphasis>
++
++[quotes]
++ifdef::no-inline-literal[]
++`=literal
++endif::no-inline-literal[]
++
++endif::doctype-article[]
++endif::backend-docbook[]
++
++ifdef::backend-docbook[]
+ ifndef::git-asciidoc-no-roff[]
+ # "unbreak" docbook-xsl v1.68 for manpages. v1.69 works with or without this.
+ # v1.72 breaks with this because it replaces dots not in roff requests.
+ [listingblock]
+ <example><title>{title}</title>
+-<literallayout class="monospaced">
++<literallayout>
+ ifdef::doctype-manpage[]
+ &#10;.ft C&#10;
+ endif::doctype-manpage[]
+@@ -53,7 +136,7 @@ ifdef::doctype-manpage[]
+ # The following two small workarounds insert a simple paragraph after screen
+ [listingblock]
+ <example><title>{title}</title>
+-<literallayout class="monospaced">
++<literallayout>
+ |
+ </literallayout><simpara></simpara>
+ {title#}</example>
+diff --git a/Documentation/user-manual.conf b/Documentation/user-manual.conf
+index d87294d..704f2cc
+--- a/Documentation/user-manual.conf
++++ b/Documentation/user-manual.conf
+@@ -7,15 +7,53 @@ startsb=&#91;
+ endsb=&#93;
+ tilde=&#126;
+ 
++[header]
++template::[header-declarations]
++
++<sect2 lang="{lang=en}" id="git_user-manual">
++template::[docinfo]
++
+ [linkgit-inlinemacro]
+-<ulink url="{target}.html">{target}{0?({0})}</ulink>
++<xref linkend="{target}{0?({0})}" />
++
++# [[id,text]]
++[anchor2-inlinemacro]
++<anchor id="{doctitle}_{1}" xreflabel="{2=[{1}]}"/>
++# [[[id]]]
++[anchor3-inlinemacro]
++<anchor id="{doctitle}_{1}" xreflabel="[{1}]"/>[{1}]
++# <<id,text>>
++[xref2-inlinemacro]
++<link linkend="{doctitle}_{1}">{2}</link>
++{2%}<xref linkend="{doctitle}_{1}"/>
++
++[sect1]
++<section{id? id="{doctitle}_{id}"}{role? role="{role}"}{reftext? xreflabel="{reftext}"}>
++<title>{title}</title>
++|
++</section>
+ 
+-ifdef::backend-docbook[]
+-# "unbreak" docbook-xsl v1.68 for manpages. v1.69 works with or without this.
+ [listingblock]
+ <example><title>{title}</title>
+-<literallayout class="monospaced">
++<literallayout>
++ifdef::doctype-manpage[]
++&#10;.ft C&#10;
++endif::doctype-manpage[]
+ |
++ifdef::doctype-manpage[]
++&#10;.ft&#10;
++endif::doctype-manpage[]
+ </literallayout>
+ {title#}</example>
+-endif::backend-docbook[]
++endif::git-asciidoc-no-roff[]
++
++ifdef::git-asciidoc-no-roff[]
++ifdef::doctype-manpage[]
++# The following two small workarounds insert a simple paragraph after screen
++[listingblock]
++<example><title>{title}</title>
++<literallayout>
++|
++</literallayout><simpara></simpara>
++{title#}</example>
++endif::doctype-manpage[]

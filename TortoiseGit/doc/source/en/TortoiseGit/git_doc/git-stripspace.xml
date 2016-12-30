@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect2 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<sect2 lang="en" id="git-stripspace(1)">
+    <title>git-stripspace(1)</title>
+<indexterm>
+<primary>git-stripspace(1)</primary>
+</indexterm>
+<simplesect id="git-stripspace(1)__name">
+<title>NAME</title>
+<simpara>git-stripspace - Remove unnecessary whitespace</simpara>
+</simplesect>
+<simplesect id="git-stripspace(1)__synopsis">
+<title>SYNOPSIS</title>
+<blockquote>
+<literallayout><emphasis>git stripspace</emphasis> [-s | --strip-comments]
+<emphasis>git stripspace</emphasis> [-c | --comment-lines]</literallayout>
+</blockquote>
+</simplesect>
+<simplesect id="git-stripspace(1)__description">
+<title>DESCRIPTION</title>
+<simpara>Read text, such as commit messages, notes, tags and branch
+descriptions, from the standard input and clean it in the manner
+used by Git.</simpara>
+<simpara>With no arguments, this will:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+remove trailing whitespace from all lines
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+collapse multiple consecutive empty lines into one empty line
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+remove empty lines from the beginning and end of the input
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+add a missing <emphasis>\n</emphasis> to the last line if necessary.
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>In the case where the input consists entirely of whitespace characters, no
+output will be produced.</simpara>
+<simpara><emphasis role="strong">NOTE</emphasis>: This is intended for cleaning metadata, prefer the <emphasis>--whitespace=fix</emphasis>
+mode of <xref linkend="git-apply(1)" /> for correcting whitespace of patches or files in
+the repository.</simpara>
+</simplesect>
+<simplesect id="git-stripspace(1)__options">
+<title>OPTIONS</title>
+<variablelist>
+<varlistentry>
+<term>
+-s
+</term>
+<term>
+--strip-comments
+</term>
+<listitem>
+<simpara>
+        Skip and remove all lines starting with comment character (default <emphasis>#</emphasis>).
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-c
+</term>
+<term>
+--comment-lines
+</term>
+<listitem>
+<simpara>
+        Prepend comment character and blank to each line. Lines will automatically
+        be terminated with a newline. On empty lines, only the comment character
+        will be prepended.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</simplesect>
+<simplesect id="git-stripspace(1)__examples">
+<title>EXAMPLES</title>
+<simpara>Given the following noisy input with <emphasis>$</emphasis> indicating the end of a line:</simpara>
+<screen>|A brief introduction   $
+|   $
+|$
+|A new paragraph$
+|# with a commented-out line    $
+|explaining lots of stuff.$
+|$
+|# An old paragraph, also commented-out. $
+|      $
+|The end.$
+|  $</screen>
+<simpara>Use <emphasis>git stripspace</emphasis> with no arguments to obtain:</simpara>
+<screen>|A brief introduction$
+|$
+|A new paragraph$
+|# with a commented-out line$
+|explaining lots of stuff.$
+|$
+|# An old paragraph, also commented-out.$
+|$
+|The end.$</screen>
+<simpara>Use <emphasis>git stripspace --strip-comments</emphasis> to obtain:</simpara>
+<screen>|A brief introduction$
+|$
+|A new paragraph$
+|explaining lots of stuff.$
+|$
+|The end.$</screen>
+</simplesect>
+<simplesect id="git-stripspace(1)__git">
+<title>GIT</title>
+<simpara>Part of the <xref linkend="git(1)" /> suite</simpara>
+</simplesect>
+</sect2>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect2 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<sect2 lang="en" id="git-verify-tag(1)">
+    <title>git-verify-tag(1)</title>
+<indexterm>
+<primary>git-verify-tag(1)</primary>
+</indexterm>
+<simplesect id="git-verify-tag(1)__name">
+<title>NAME</title>
+<simpara>git-verify-tag - Check the GPG signature of tags</simpara>
+</simplesect>
+<simplesect id="git-verify-tag(1)__synopsis">
+<title>SYNOPSIS</title>
+<blockquote>
+<literallayout><emphasis>git verify-tag</emphasis> &lt;tag&gt;&#8230;</literallayout>
+</blockquote>
+</simplesect>
+<simplesect id="git-verify-tag(1)__description">
+<title>DESCRIPTION</title>
+<simpara>Validates the gpg signature created by <emphasis>git tag</emphasis>.</simpara>
+</simplesect>
+<simplesect id="git-verify-tag(1)__options">
+<title>OPTIONS</title>
+<variablelist>
+<varlistentry>
+<term>
+--raw
+</term>
+<listitem>
+<simpara>
+        Print the raw gpg status output to standard error instead of the normal
+        human-readable output.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-v
+</term>
+<term>
+--verbose
+</term>
+<listitem>
+<simpara>
+        Print the contents of the tag object before validating it.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+&lt;tag&gt;&#8230;
+</term>
+<listitem>
+<simpara>
+        SHA-1 identifiers of Git tag objects.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</simplesect>
+<simplesect id="git-verify-tag(1)__git">
+<title>GIT</title>
+<simpara>Part of the <xref linkend="git(1)" /> suite</simpara>
+</simplesect>
+</sect2>

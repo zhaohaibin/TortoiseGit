@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect2 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<sect2 lang="en" id="git-reflog(1)">
+    <title>git-reflog(1)</title>
+<indexterm>
+<primary>git-reflog(1)</primary>
+</indexterm>
+<simplesect id="git-reflog(1)__name">
+<title>NAME</title>
+<simpara>git-reflog - Manage reflog information</simpara>
+</simplesect>
+<simplesect id="git-reflog(1)__synopsis">
+<title>SYNOPSIS</title>
+<blockquote>
+<literallayout><emphasis>git reflog</emphasis> &lt;subcommand&gt; &lt;options&gt;</literallayout>
+</blockquote>
+</simplesect>
+<simplesect id="git-reflog(1)__description">
+<title>DESCRIPTION</title>
+<simpara>The command takes various subcommands, and different options
+depending on the subcommand:</simpara>
+<blockquote>
+<literallayout><emphasis>git reflog</emphasis> [<emphasis>show</emphasis>] [log-options] [&lt;ref&gt;]
+<emphasis>git reflog expire</emphasis> [--expire=&lt;time&gt;] [--expire-unreachable=&lt;time&gt;]
+        [--rewrite] [--updateref] [--stale-fix]
+        [--dry-run] [--verbose] [--all | &lt;refs&gt;&#8230;]
+<emphasis>git reflog delete</emphasis> [--rewrite] [--updateref]
+        [--dry-run] [--verbose] ref@{specifier}&#8230;
+<emphasis>git reflog exists</emphasis> &lt;ref&gt;</literallayout>
+</blockquote>
+<simpara>Reference logs, or "reflogs", record when the tips of branches and
+other references were updated in the local repository. Reflogs are
+useful in various Git commands, to specify the old value of a
+reference. For example, <emphasis>HEAD@{2}</emphasis> means "where HEAD used to be two
+moves ago", <emphasis>master@{one.week.ago}</emphasis> means "where master used to point
+to one week ago in this local repository", and so on. See
+<xref linkend="gitrevisions(7)" /> for more details.</simpara>
+<simpara>This command manages the information recorded in the reflogs.</simpara>
+<simpara>The "show" subcommand (which is also the default, in the absence of
+any subcommands) shows the log of the reference provided in the
+command-line (or <emphasis>HEAD</emphasis>, by default). The reflog covers all recent
+actions, and in addition the <emphasis>HEAD</emphasis> reflog records branch switching.
+<emphasis>git reflog show</emphasis> is an alias for <emphasis>git log -g --abbrev-commit
+--pretty=oneline</emphasis>; see <xref linkend="git-log(1)" /> for more information.</simpara>
+<simpara>The "expire" subcommand prunes older reflog entries. Entries older
+than <emphasis>expire</emphasis> time, or entries older than <emphasis>expire-unreachable</emphasis> time
+and not reachable from the current tip, are removed from the reflog.
+This is typically not used directly by end users -- instead, see
+<xref linkend="git-gc(1)" />.</simpara>
+<simpara>The "delete" subcommand deletes single entries from the reflog. Its
+argument must be an <emphasis>exact</emphasis> entry (e.g. "<emphasis>git reflog delete
+master@{2}</emphasis>"). This subcommand is also typically not used directly by
+end users.</simpara>
+<simpara>The "exists" subcommand checks whether a ref has a reflog.  It exits
+with zero status if the reflog exists, and non-zero status if it does
+not.</simpara>
+</simplesect>
+<simplesect id="git-reflog(1)__options">
+<title>OPTIONS</title>
+<section id="git-reflog(1)__options_for_emphasis_show_emphasis">
+<title>Options for <emphasis>show</emphasis></title>
+<simpara><emphasis>git reflog show</emphasis> accepts any of the options accepted by <emphasis>git log</emphasis>.</simpara>
+</section>
+<section id="git-reflog(1)__options_for_emphasis_expire_emphasis">
+<title>Options for <emphasis>expire</emphasis></title>
+<variablelist>
+<varlistentry>
+<term>
+--all
+</term>
+<listitem>
+<simpara>
+        Process the reflogs of all references.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+--expire=&lt;time&gt;
+</term>
+<listitem>
+<simpara>
+        Prune entries older than the specified time. If this option is
+        not specified, the expiration time is taken from the
+        configuration setting <emphasis>gc.reflogExpire</emphasis>, which in turn
+        defaults to 90 days. <emphasis>--expire=all</emphasis> prunes entries regardless
+        of their age; <emphasis>--expire=never</emphasis> turns off pruning of reachable
+        entries (but see <emphasis>--expire-unreachable</emphasis>).
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+--expire-unreachable=&lt;time&gt;
+</term>
+<listitem>
+<simpara>
+        Prune entries older than <emphasis>&lt;time&gt;</emphasis> that are not reachable from
+        the current tip of the branch. If this option is not
+        specified, the expiration time is taken from the configuration
+        setting <emphasis>gc.reflogExpireUnreachable</emphasis>, which in turn defaults
+        to 30 days. <emphasis>--expire-unreachable=all</emphasis> prunes unreachable
+        entries regardless of their age; <emphasis>--expire-unreachable=never</emphasis>
+        turns off early pruning of unreachable entries (but see
+        <emphasis>--expire</emphasis>).
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+--updateref
+</term>
+<listitem>
+<simpara>
+        Update the reference to the value of the top reflog entry (i.e.
+        &lt;ref&gt;@{0}) if the previous top entry was pruned.  (This
+        option is ignored for symbolic references.)
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+--rewrite
+</term>
+<listitem>
+<simpara>
+        If a reflog entry's predecessor is pruned, adjust its "old"
+        SHA-1 to be equal to the "new" SHA-1 field of the entry that
+        now precedes it.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+--stale-fix
+</term>
+<listitem>
+<simpara>
+        Prune any reflog entries that point to "broken commits". A
+        broken commit is a commit that is not reachable from any of
+        the reference tips and that refers, directly or indirectly, to
+        a missing commit, tree, or blob object.
+</simpara>
+<simpara>This computation involves traversing all the reachable objects, i.e. it
+has the same cost as <emphasis>git prune</emphasis>.  It is primarily intended to fix
+corruption caused by garbage collecting using older versions of Git,
+which didn't protect objects referred to by reflogs.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-n
+</term>
+<term>
+--dry-run
+</term>
+<listitem>
+<simpara>
+        Do not actually prune any entries; just show what would have
+        been pruned.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+--verbose
+</term>
+<listitem>
+<simpara>
+        Print extra information on screen.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+<section id="git-reflog(1)__options_for_emphasis_delete_emphasis">
+<title>Options for <emphasis>delete</emphasis></title>
+<simpara><emphasis>git reflog delete</emphasis> accepts options <emphasis>--updateref</emphasis>, <emphasis>--rewrite</emphasis>, <emphasis>-n</emphasis>,
+<emphasis>--dry-run</emphasis>, and <emphasis>--verbose</emphasis>, with the same meanings as when they are
+used with <emphasis>expire</emphasis>.</simpara>
+</section>
+</simplesect>
+<simplesect id="git-reflog(1)__git">
+<title>GIT</title>
+<simpara>Part of the <xref linkend="git(1)" /> suite</simpara>
+</simplesect>
+</sect2>

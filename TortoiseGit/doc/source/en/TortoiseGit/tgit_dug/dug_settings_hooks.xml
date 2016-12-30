@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect2 SYSTEM "../../../dtd/dblite.dtd">
+<sect2 id="tgit-dug-settings-hooks">
+	<title>Client Side Hook Scripts</title>
+	<?dbhh topicname="HIDD_SETTINGSHOOKS"?>
+	<?dbhh topicname="HIDD_SETTINGSHOOKCONFIG"?>
+	<indexterm>
+		<primary>client hooks</primary>
+	</indexterm>
+	<indexterm>
+		<primary>hook scripts</primary>
+	</indexterm>
+	<para>
+		<figure id="tgit-dug-settings-dia-hooks">
+			<title>The Settings Dialog, Hook Scripts Page</title>
+			<graphic fileref="../images/SettingsHooks.png"/>
+		</figure>
+		This dialog allows you to set up hook scripts which will be
+		executed automatically when certain TortoiseGit actions are performed on the client side.
+	</para>
+	<para>
+		For various security and implementation reasons, hook scripts are defined
+		locally on a machine, rather than as project properties. You define what
+		happens, no matter what someone else commits to the repository. Of course
+		you can always choose to call a script which is itself under version control.
+	</para>
+	<para>
+		<figure id="tgit-dug-settings-dia-hook-edit">
+			<title>The Settings Dialog, Configure Hook Scripts</title>
+			<graphic fileref="../images/SettingsHookEdit.png"/>
+		</figure>
+		To add a new hook script, simply click <guibutton>Add</guibutton>
+		and fill in the details.
+	</para>
+	<para>
+		There are currently six types of hook script available
+		<variablelist>
+			<varlistentry>
+				<term>Start-commit</term>
+				<listitem>
+					<para>
+						Called before the commit dialog is shown.
+						You might want to use this if the hook modifies a versioned
+						file and affects the list of files that need to be committed
+						and/or commit message. However you should note that because
+						the hook is called at an early stage, the full list of objects
+						selected for commit is not available.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Pre-commit</term>
+				<listitem>
+					<para>
+						Called after the user clicks <guibutton>OK</guibutton>
+						in the commit dialog, and before the actual commit begins.
+						This hook has a list of exactly what will be committed.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Post-commit</term>
+				<listitem>
+					<para>
+						Called after the commit finished successfully.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Pre-push</term>
+				<listitem>
+					<para>
+						Called before actual Git push begins.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Post-push</term>
+				<listitem>
+					<para>
+						Called after pushing finishes (whether successful or not).
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Pre-rebase</term>
+				<listitem>
+					<para>
+						Called before rebasing starts (after clicking on Start or autostart).
+					</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</para>
+	<para>
+		A hook is defined for a particular working tree path. You only need to
+		specify the top level path; if you perform an operation in a sub-folder,
+		TortoiseGit will automatically search upwards for a matching path.
+		Use <literal>*</literal> for matching all working trees.
+	</para>
+	<para>
+		Next you must specify the command line to execute, starting with the path
+		to the hook script or executable.
+		This could be a batch file, an executable file or any other file which
+		has a valid windows file association, eg. a perl script.
+	</para>
+	<para>
+		The command line includes several parameters which get filled in
+		by TortoiseGit. The parameters passed depend upon which hook is called.
+		Each hook has its own parameters which are passed in the following order:
+		<variablelist>
+			<varlistentry>
+				<term>Start-commit</term>
+				<listitem condition="pot">
+					<para>
+						<literal>PATH</literal>
+						<literal>MESSAGEFILE</literal>
+						<literal>CWD</literal>
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Pre-commit</term>
+				<listitem condition="pot">
+					<para>
+						<literal>PATH</literal>
+						<literal>MESSAGEFILE</literal>
+						<literal>CWD</literal>
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Post-commit</term>
+				<listitem condition="pot">
+					<para>
+						<literal>CWD</literal>
+						<literal>(commit was amend (true or false))</literal>
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Pre-push</term>
+				<listitem condition="pot">
+					<para>
+						<literal>ERROR</literal>
+						<literal>CWD</literal>
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Post-push</term>
+				<listitem condition="pot">
+					<para>
+						<literal>ERROR</literal>
+						<literal>CWD</literal>
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Pre-rebase</term>
+				<listitem condition="pot">
+					<para>
+						<literal>(upstream branch)</literal>
+						<literal>(rebased branch)</literal>
+						<literal>ERROR</literal>
+						<literal>CWD</literal>
+					</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</para>
+	<para>
+		The meaning of each of these parameters is described here:
+		<variablelist>
+			<varlistentry>
+				<term condition="pot">PATH</term>
+				<listitem>
+					<para>
+						A path to a temporary file which contains all the
+						paths for which the operation was started.
+						Each path is on a separate line in the temp file.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term condition="pot">MESSAGEFILE</term>
+				<listitem>
+					<para>
+						Path to a file containing the log message for
+						the commit. The file contains the text in UTF-8
+						encoding. After successful execution of the
+						start-commit and pre-commit hooks, the log message is read back,
+						giving the hook a chance to modify it.
+					</para>
+				</listitem>
+			</varlistentry>
+			<!--
+			<varlistentry>
+				<term condition="pot">REVISION</term>
+				<listitem>
+					<para>
+						The repository revision to which the update should
+						be done or after a commit completes.
+					</para>
+				</listitem>
+			</varlistentry>
+			-->
+			<varlistentry>
+				<term condition="pot">ERROR</term>
+				<listitem>
+					<para>
+						Path to a file containing the error message.
+						If there was no error, the file will be empty.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term condition="pot">CWD</term>
+				<listitem>
+					<para>
+						The current working directory with which the script is run.
+						This is set to the working tree root.
+					</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</para>
+	<para>
+		Note that although we have given these parameters names for convenience,
+		you do not have to refer to those names in the hook settings.
+		All parameters listed for a particular hook are always passed,
+		whether you want them or not ;-)
+	</para>
+	<para>
+		If you want the Git operation to hold off until the hook has completed,
+		check <guilabel>Wait for the script to finish</guilabel>.
+	</para>
+	<para>
+		Normally you will want to hide ugly DOS boxes when the script runs,
+		so <guilabel>Hide the script while running</guilabel> is checked by default.
+	</para>
+	<sect3 id="tgit-dug-settings-hooks-issuetracker">
+		<title>Issue Tracker Integration</title>
+		<?dbhh topicname="HIDD_SETTINGSBUGTRAQ"?>
+		<?dbhh topicname="HIDD_SETTINGSBUGTRAQADV"?>
+		<para>
+			TortoiseGit can use a COM plugin to query issue trackers when in the
+			commit dialog. The use of such plugins is described in
+			<xref linkend="tgit-dug-bugtracker-ref" />.
+			If your system administrator has provided you with a plugin, which
+			you have already installed and registered, this is the place to
+			specify how it integrates with your working tree.
+		</para>
+		<tip>
+			There is also a hierarchical git configuration to associate issue tracker plugin with your project,
+			rather than with to a specific directory path. Such settings are more portable.
+			See <xref linkend="tgit-dug-bugtracker"/> to configure these settings.
+		</tip>
+		<para>
+			<figure id="tgit-dug-settings-dia-issuetracker">
+				<title>The Settings Dialog, Issue Tracker Integration Page</title>
+				<graphic fileref="../images/SettingsIssueTrackerIntegration.png"/>
+				<graphic fileref="../images/SettingsIssueTracker.png"/>
+			</figure>
+			Click on <guibutton>Add...</guibutton> to use the plugin with
+			a particular working tree. Here you can specify the working tree
+			path, choose which plugin to use from a drop down list of all
+			registered issue tracker plugins, and any parameters to pass.
+			The parameters will be specific to the plugin, but might include
+			your user name on the issue tracker so that the plugin can
+			query for issues which are assigned to you.
+		</para>
+	</sect3>
+	<sect3 id="tgit-dug-settings-hooks-issuetracker-config">
+	<title>Config</title>
+		<para>
+			<figure id="tgit-dug-settings-hooks-issuetrack-config">
+				<title>The Settings Dialog, Issue Tracker Config</title>
+				<graphic fileref="../images/SettingsIssueTrackerConfig.png"/>
+			</figure>
+			See  <xref linkend="tgit-dug-bugtracker"/> for a descriptions of the different options.
+		</para>
+		<important>
+			<para>
+				If you have problems entering/storing data please see <xref linkend="tgit-dug-settings-hierachical"/>.
+			</para>
+		</important>
+	</sect3>
+</sect2>

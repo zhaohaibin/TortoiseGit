@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect2 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<sect2 lang="en" id="git-cherry-pick(1)">
+    <title>git-cherry-pick(1)</title>
+<indexterm>
+<primary>git-cherry-pick(1)</primary>
+</indexterm>
+<simplesect id="git-cherry-pick(1)__name">
+<title>NAME</title>
+<simpara>git-cherry-pick - Apply the changes introduced by some existing commits</simpara>
+</simplesect>
+<simplesect id="git-cherry-pick(1)__synopsis">
+<title>SYNOPSIS</title>
+<blockquote>
+<literallayout><emphasis>git cherry-pick</emphasis> [--edit] [-n] [-m parent-number] [-s] [-x] [--ff]
+                  [-S[&lt;keyid&gt;]] &lt;commit&gt;&#8230;
+<emphasis>git cherry-pick</emphasis> --continue
+<emphasis>git cherry-pick</emphasis> --quit
+<emphasis>git cherry-pick</emphasis> --abort</literallayout>
+</blockquote>
+</simplesect>
+<simplesect id="git-cherry-pick(1)__description">
+<title>DESCRIPTION</title>
+<simpara>Given one or more existing commits, apply the change each one
+introduces, recording a new commit for each.  This requires your
+working tree to be clean (no modifications from the HEAD commit).</simpara>
+<simpara>When it is not obvious how to apply a change, the following
+happens:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+The current branch and <emphasis>HEAD</emphasis> pointer stay at the last commit
+   successfully made.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+The <emphasis>CHERRY_PICK_HEAD</emphasis> ref is set to point at the commit that
+   introduced the change that is difficult to apply.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Paths in which the change applied cleanly are updated both
+   in the index file and in your working tree.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+For conflicting paths, the index file records up to three
+   versions, as described in the "TRUE MERGE" section of
+   <xref linkend="git-merge(1)" />.  The working tree files will include
+   a description of the conflict bracketed by the usual
+   conflict markers <emphasis>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</emphasis> and <emphasis>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</emphasis>.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+No other modifications are made.
+</simpara>
+</listitem>
+</orderedlist>
+<simpara>See <xref linkend="git-merge(1)" /> for some hints on resolving such
+conflicts.</simpara>
+</simplesect>
+<simplesect id="git-cherry-pick(1)__options">
+<title>OPTIONS</title>
+<variablelist>
+<varlistentry>
+<term>
+&lt;commit&gt;&#8230;
+</term>
+<listitem>
+<simpara>
+        Commits to cherry-pick.
+        For a more complete list of ways to spell commits, see
+        <xref linkend="gitrevisions(7)" />.
+        Sets of commits can be passed but no traversal is done by
+        default, as if the <emphasis>--no-walk</emphasis> option was specified, see
+        <xref linkend="git-rev-list(1)" />. Note that specifying a range will
+        feed all &lt;commit&gt;&#8230; arguments to a single revision walk
+        (see a later example that uses <emphasis>maint master..next</emphasis>).
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-e
+</term>
+<term>
+--edit
+</term>
+<listitem>
+<simpara>
+        With this option, <emphasis>git cherry-pick</emphasis> will let you edit the commit
+        message prior to committing.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-x
+</term>
+<listitem>
+<simpara>
+        When recording the commit, append a line that says
+        "(cherry picked from commit &#8230;)" to the original commit
+        message in order to indicate which commit this change was
+        cherry-picked from.  This is done only for cherry
+        picks without conflicts.  Do not use this option if
+        you are cherry-picking from your private branch because
+        the information is useless to the recipient.  If on the
+        other hand you are cherry-picking between two publicly
+        visible branches (e.g. backporting a fix to a
+        maintenance branch for an older release from a
+        development branch), adding this information can be
+        useful.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-r
+</term>
+<listitem>
+<simpara>
+        It used to be that the command defaulted to do <emphasis>-x</emphasis>
+        described above, and <emphasis>-r</emphasis> was to disable it.  Now the
+        default is not to do <emphasis>-x</emphasis> so this option is a no-op.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-m parent-number
+</term>
+<term>
+--mainline parent-number
+</term>
+<listitem>
+<simpara>
+        Usually you cannot cherry-pick a merge because you do not know which
+        side of the merge should be considered the mainline.  This
+        option specifies the parent number (starting from 1) of
+        the mainline and allows cherry-pick to replay the change
+        relative to the specified parent.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-n
+</term>
+<term>
+--no-commit
+</term>
+<listitem>
+<simpara>
+        Usually the command automatically creates a sequence of commits.
+        This flag applies the changes necessary to cherry-pick
+        each named commit to your working tree and the index,
+        without making any commit.  In addition, when this
+        option is used, your index does not have to match the
+        HEAD commit.  The cherry-pick is done against the
+        beginning state of your index.
+</simpara>
+<simpara>This is useful when cherry-picking more than one commits'
+effect to your index in a row.</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-s
+</term>
+<term>
+--signoff
+</term>
+<listitem>
+<simpara>
+        Add Signed-off-by line at the end of the commit message.
+        See the signoff option in <xref linkend="git-commit(1)" /> for more information.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-S[&lt;keyid&gt;]
+</term>
+<term>
+--gpg-sign[=&lt;keyid&gt;]
+</term>
+<listitem>
+<simpara>
+        GPG-sign commits. The <emphasis>keyid</emphasis> argument is optional and
+        defaults to the committer identity; if specified, it must be
+        stuck to the option without a space.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+--ff
+</term>
+<listitem>
+<simpara>
+        If the current HEAD is the same as the parent of the
+        cherry-pick'ed commit, then a fast forward to this commit will
+        be performed.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+--allow-empty
+</term>
+<listitem>
+<simpara>
+        By default, cherry-picking an empty commit will fail,
+        indicating that an explicit invocation of <emphasis>git commit
+        --allow-empty</emphasis> is required. This option overrides that
+        behavior, allowing empty commits to be preserved automatically
+        in a cherry-pick. Note that when "--ff" is in effect, empty
+        commits that meet the "fast-forward" requirement will be kept
+        even without this option.  Note also, that use of this option only
+        keeps commits that were initially empty (i.e. the commit recorded the
+        same tree as its parent).  Commits which are made empty due to a
+        previous commit are dropped.  To force the inclusion of those commits
+        use <emphasis>--keep-redundant-commits</emphasis>.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+--allow-empty-message
+</term>
+<listitem>
+<simpara>
+        By default, cherry-picking a commit with an empty message will fail.
+        This option overrides that behaviour, allowing commits with empty
+        messages to be cherry picked.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+--keep-redundant-commits
+</term>
+<listitem>
+<simpara>
+        If a commit being cherry picked duplicates a commit already in the
+        current history, it will become empty.  By default these
+        redundant commits cause <emphasis>cherry-pick</emphasis> to stop so the user can
+        examine the commit. This option overrides that behavior and
+        creates an empty commit object.  Implies <emphasis>--allow-empty</emphasis>.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+--strategy=&lt;strategy&gt;
+</term>
+<listitem>
+<simpara>
+        Use the given merge strategy.  Should only be used once.
+        See the MERGE STRATEGIES section in <xref linkend="git-merge(1)" />
+        for details.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-X&lt;option&gt;
+</term>
+<term>
+--strategy-option=&lt;option&gt;
+</term>
+<listitem>
+<simpara>
+        Pass the merge strategy-specific option through to the
+        merge strategy.  See <xref linkend="git-merge(1)" /> for details.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</simplesect>
+<simplesect id="git-cherry-pick(1)__sequencer_subcommands">
+<title>SEQUENCER SUBCOMMANDS</title>
+<variablelist>
+<varlistentry>
+<term>
+--continue
+</term>
+<listitem>
+<simpara>
+        Continue the operation in progress using the information in
+        <emphasis>.git/sequencer</emphasis>.  Can be used to continue after resolving
+        conflicts in a failed cherry-pick or revert.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+--quit
+</term>
+<listitem>
+<simpara>
+        Forget about the current operation in progress.  Can be used
+        to clear the sequencer state after a failed cherry-pick or
+        revert.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+--abort
+</term>
+<listitem>
+<simpara>
+        Cancel the operation and return to the pre-sequence state.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</simplesect>
+<simplesect id="git-cherry-pick(1)__examples">
+<title>EXAMPLES</title>
+<variablelist>
+<varlistentry>
+<term>
+<emphasis>git cherry-pick master</emphasis>
+</term>
+<listitem>
+<simpara>
+        Apply the change introduced by the commit at the tip of the
+        master branch and create a new commit with this change.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<emphasis>git cherry-pick ..master</emphasis>
+</term>
+<term>
+<emphasis>git cherry-pick ^HEAD master</emphasis>
+</term>
+<listitem>
+<simpara>
+        Apply the changes introduced by all commits that are ancestors
+        of master but not of HEAD to produce new commits.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<emphasis>git cherry-pick maint next ^master</emphasis>
+</term>
+<term>
+<emphasis>git cherry-pick maint master..next</emphasis>
+</term>
+<listitem>
+<simpara>
+        Apply the changes introduced by all commits that are
+        ancestors of maint or next, but not master or any of its
+        ancestors.  Note that the latter does not mean <emphasis>maint</emphasis> and
+        everything between <emphasis>master</emphasis> and <emphasis>next</emphasis>; specifically,
+        <emphasis>maint</emphasis> will not be used if it is included in <emphasis>master</emphasis>.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<emphasis>git cherry-pick master~4 master~2</emphasis>
+</term>
+<listitem>
+<simpara>
+        Apply the changes introduced by the fifth and third last
+        commits pointed to by master and create 2 new commits with
+        these changes.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<emphasis>git cherry-pick -n master~1 next</emphasis>
+</term>
+<listitem>
+<simpara>
+        Apply to the working tree and the index the changes introduced
+        by the second last commit pointed to by master and by the last
+        commit pointed to by next, but do not create any commit with
+        these changes.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<emphasis>git cherry-pick --ff ..next</emphasis>
+</term>
+<listitem>
+<simpara>
+        If history is linear and HEAD is an ancestor of next, update
+        the working tree and advance the HEAD pointer to match next.
+        Otherwise, apply the changes introduced by those commits that
+        are in next but not HEAD to the current branch, creating a new
+        commit for each new change.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+<emphasis>git rev-list --reverse master -- README | git cherry-pick -n --stdin</emphasis>
+</term>
+<listitem>
+<simpara>
+        Apply the changes introduced by all commits on the master
+        branch that touched README to the working tree and index,
+        so the result can be inspected and made into a single new
+        commit if suitable.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara>The following sequence attempts to backport a patch, bails out because
+the code the patch applies to has changed too much, and then tries
+again, this time exercising more care about matching up context lines.</simpara>
+<screen>$ git cherry-pick topic^             <co id="git-cherry-pick_CO1-1"/>
+$ git diff                           <co id="git-cherry-pick_CO1-2"/>
+$ git reset --merge ORIG_HEAD        <co id="git-cherry-pick_CO1-3"/>
+$ git cherry-pick -Xpatience topic^  <co id="git-cherry-pick_CO1-4"/></screen>
+<calloutlist>
+<callout arearefs="git-cherry-pick_CO1-1">
+<para>
+apply the change that would be shown by <emphasis>git show topic^</emphasis>.
+In this example, the patch does not apply cleanly, so
+information about the conflict is written to the index and
+working tree and no new commit results.
+</para>
+</callout>
+<callout arearefs="git-cherry-pick_CO1-2">
+<para>
+summarize changes to be reconciled
+</para>
+</callout>
+<callout arearefs="git-cherry-pick_CO1-3">
+<para>
+cancel the cherry-pick.  In other words, return to the
+pre-cherry-pick state, preserving any local modifications you had in
+the working tree.
+</para>
+</callout>
+<callout arearefs="git-cherry-pick_CO1-4">
+<para>
+try to apply the change introduced by <emphasis>topic^</emphasis> again,
+spending extra time to avoid mistakes based on incorrectly matching
+context lines.
+</para>
+</callout>
+</calloutlist>
+</simplesect>
+<simplesect id="git-cherry-pick(1)__see_also">
+<title>SEE ALSO</title>
+<simpara><xref linkend="git-revert(1)" /></simpara>
+</simplesect>
+<simplesect id="git-cherry-pick(1)__git">
+<title>GIT</title>
+<simpara>Part of the <xref linkend="git(1)" /> suite</simpara>
+</simplesect>
+</sect2>

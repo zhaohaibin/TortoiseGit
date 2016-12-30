@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE sect1 SYSTEM "../../../dtd/dblite.dtd">
+<sect1 id="tgit-dug-rebase">
+  <title>Rebase</title>
+  <?dbhh topicname="HIDD_REBASE"?>
+  <indexterm>
+    <primary>Rebase</primary>
+  </indexterm>
+  <para>
+	Rebase is quite complex, it alters the history of a repository. Please make sure you understood its principles before using it (For hints where to find more information about Git and merging see <xref linkend="tgit-preface-readingguide"/>).
+  </para>
+  <para>
+	<menuchoice>
+		<guimenu>TortoiseGit</guimenu>
+		<guimenuitem>Rebase</guimenuitem>
+	</menuchoice>
+  </para>
+  <para>
+	Rebase dialog will be shown. <graphic fileref="../images/GitRebase.png"/>
+  </para>
+  <para>
+	Rebasing commits takes places from the bottom of the list to the top (in ascending order of the ID column). For example, "squash" means that the commit gets squashed/combined with the previous commit(s) which are located below in the list (with a lower ID).
+  </para>
+	<tip>
+		<para>
+			Instead of setting "pick", "skip", "edit", "squash" by using the context-menu, you can also use the following keys:
+			<keycap>space</keycap>: shifts the state, <keycap>s</keycap>: skip, <keycap>e</keycap>: edit, <keycap>p</keycap>: pick, <keycap>q</keycap>: squash
+		</para>
+	</tip>
+	<tip>
+		<para>
+			There is a button that swaps branch and upstream.
+			Assume you are currently working on <literal>master</literal> branch, 
+			and wish to rebase <literal>feature</literal> branch onto <literal>master</literal>.
+			Instead of switching to <literal>feature</literal> in advance, 
+			select the commit of <literal>feature</literal> in log list, 
+			<menuchoice>
+				<guimenu>Context Menu</guimenu>
+				<guimenuitem>Rebase</guimenuitem>
+			</menuchoice>
+			and click this swap button.
+			TortoiseGit's rebase moves <literal>feature</literal> to <literal>master</literal> directly, then 
+			cherry-picks the commits. This approach touches fewer files and runs faster.
+		</para>
+	</tip>
+	<important>
+		<para>
+			When preserving merge commits, re-ordering commits cannot be handled properly in all cases, see in known bugs of vanilla git rebase: <xref linkend="git-rebase(1)"/>.
+		</para>
+	</important>
+</sect1>

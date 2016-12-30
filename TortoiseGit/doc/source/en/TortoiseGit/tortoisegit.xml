@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book SYSTEM "../../dtd/dblite.dtd">
+<book id="tsvn" lang="en" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<?dbhh topicname="HIDD_FIRSTSTARTWIZARD_START"?>
+	<title>TortoiseGit</title>
+	<subtitle>A Git client for Windows</subtitle>
+	<xi:include href="../version.xml"/>
+	<bookinfo>
+		<edition>First</edition>
+		<authorgroup>
+			<author>
+				<firstname>Lübbe</firstname>
+				<surname>Onken (TortoiseSVN)</surname>
+			</author>
+			<author>
+				<firstname>Simon</firstname>
+				<surname>Large (TortoiseSVN)</surname>
+			</author>
+			<author>
+				<firstname>Frank</firstname>
+				<surname>Li</surname>
+			</author>
+			<author>
+				<firstname>Sven</firstname>
+				<surname>Strickroth</surname>
+			</author>
+		</authorgroup>
+	</bookinfo>
+	<!-- include external files -->
+	<xi:include href="./tgit_preface.xml"/>
+	<xi:include href="./tgit_introduction.xml"/>
+
+	<!--
+	<xi:include href="./tgit_repository/repository.xml"/>
+	-->
+	<xi:include href="./tgit_dug/dug.xml"/>
+	<xi:include href="./tgit_app_faq.xml"/>
+	<xi:include href="./tgit_bugtraqprovider.xml"/>
+	<xi:include href="./tgit_app_admins.xml" />
+	<xi:include href="./tgit_app_automation.xml"/>	
+	
+	<xi:include href="./tgit_app_internals.xml"/>
+
+	<xi:include href="./tgit_app_ssh.xml"/>
+
+	<xi:include href="./git_doc/git-doc.xml"/>
+
+	<xi:include href="../glossary.xml"/>
+
+	<index id="tgit-index"/>
+</book>

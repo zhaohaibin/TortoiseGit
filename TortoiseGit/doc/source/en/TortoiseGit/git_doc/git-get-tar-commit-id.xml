@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect2 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<sect2 lang="en" id="git-get-tar-commit-id(1)">
+    <title>git-get-tar-commit-id(1)</title>
+<indexterm>
+<primary>git-get-tar-commit-id(1)</primary>
+</indexterm>
+<simplesect id="git-get-tar-commit-id(1)__name">
+<title>NAME</title>
+<simpara>git-get-tar-commit-id - Extract commit ID from an archive created using git-archive</simpara>
+</simplesect>
+<simplesect id="git-get-tar-commit-id(1)__synopsis">
+<title>SYNOPSIS</title>
+<blockquote>
+<literallayout><emphasis>git get-tar-commit-id</emphasis></literallayout>
+</blockquote>
+</simplesect>
+<simplesect id="git-get-tar-commit-id(1)__description">
+<title>DESCRIPTION</title>
+<simpara>Read a tar archive created by <emphasis>git archive</emphasis> from the standard input
+and extract the commit ID stored in it.  It reads only the first
+1024 bytes of input, thus its runtime is not influenced by the size
+of the tar archive very much.</simpara>
+<simpara>If no commit ID is found, <emphasis>git get-tar-commit-id</emphasis> quietly exists with a
+return code of 1.  This can happen if the archive had not been created
+using <emphasis>git archive</emphasis> or if the first parameter of <emphasis>git archive</emphasis> had been
+a tree ID instead of a commit ID or tag.</simpara>
+</simplesect>
+<simplesect id="git-get-tar-commit-id(1)__git">
+<title>GIT</title>
+<simpara>Part of the <xref linkend="git(1)" /> suite</simpara>
+</simplesect>
+</sect2>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sect2 PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+
+<sect2 lang="en" id="git-mv(1)">
+    <title>git-mv(1)</title>
+<indexterm>
+<primary>git-mv(1)</primary>
+</indexterm>
+<simplesect id="git-mv(1)__name">
+<title>NAME</title>
+<simpara>git-mv - Move or rename a file, a directory, or a symlink</simpara>
+</simplesect>
+<simplesect id="git-mv(1)__synopsis">
+<title>SYNOPSIS</title>
+<blockquote>
+<literallayout><emphasis>git mv</emphasis> &lt;options&gt;&#8230; &lt;args&gt;&#8230;</literallayout>
+</blockquote>
+</simplesect>
+<simplesect id="git-mv(1)__description">
+<title>DESCRIPTION</title>
+<simpara>Move or rename a file, directory or symlink.</simpara>
+<literallayout class="monospaced">git mv [-v] [-f] [-n] [-k] &lt;source&gt; &lt;destination&gt;
+git mv [-v] [-f] [-n] [-k] &lt;source&gt; ... &lt;destination directory&gt;</literallayout>
+<simpara>In the first form, it renames &lt;source&gt;, which must exist and be either
+a file, symlink or directory, to &lt;destination&gt;.
+In the second form, the last argument has to be an existing
+directory; the given sources will be moved into this directory.</simpara>
+<simpara>The index is updated after successful completion, but the change must still be
+committed.</simpara>
+</simplesect>
+<simplesect id="git-mv(1)__options">
+<title>OPTIONS</title>
+<variablelist>
+<varlistentry>
+<term>
+-f
+</term>
+<term>
+--force
+</term>
+<listitem>
+<simpara>
+        Force renaming or moving of a file even if the target exists
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-k
+</term>
+<listitem>
+<simpara>
+        Skip move or rename actions which would lead to an error
+        condition. An error happens when a source is neither existing nor
+        controlled by Git, or when it would overwrite an existing
+        file unless <emphasis>-f</emphasis> is given.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-n
+</term>
+<term>
+--dry-run
+</term>
+<listitem>
+<simpara>
+        Do nothing; only show what would happen
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+-v
+</term>
+<term>
+--verbose
+</term>
+<listitem>
+<simpara>
+        Report the names of files as they are moved.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</simplesect>
+<simplesect id="git-mv(1)__submodules">
+<title>SUBMODULES</title>
+<simpara>Moving a submodule using a gitfile (which means they were cloned
+with a Git version 1.7.8 or newer) will update the gitfile and
+core.worktree setting to make the submodule work in the new location.
+It also will attempt to update the submodule.&lt;name&gt;.path setting in
+the <xref linkend="gitmodules(5)" /> file and stage that file (unless -n is used).</simpara>
+</simplesect>
+<simplesect id="git-mv(1)__bugs">
+<title>BUGS</title>
+<simpara>Each time a superproject update moves a populated submodule (e.g. when
+switching between commits before and after the move) a stale submodule
+checkout will remain in the old location and an empty directory will
+appear in the new location. To populate the submodule again in the new
+location the user will have to run "git submodule update"
+afterwards. Removing the old directory is only safe when it uses a
+gitfile, as otherwise the history of the submodule will be deleted
+too. Both steps will be obsolete when recursive submodule update has
+been implemented.</simpara>
+</simplesect>
+<simplesect id="git-mv(1)__git">
+<title>GIT</title>
+<simpara>Part of the <xref linkend="git(1)" /> suite</simpara>
+</simplesect>
+</sect2>
