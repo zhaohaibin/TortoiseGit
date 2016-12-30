@@ -1,0 +1,30 @@
+[submodule "ext/apr-util"]
+	path = ext/apr-util
+	url = https://github.com/apache/apr-util.git
+[submodule "ext/apr"]
+	path = ext/apr
+	url = https://gitlab.com/tortoisegit/apr.git
+[submodule "ext/tgit"]
+	path = ext/tgit
+	url = https://gitlab.com/tortoisegit/tgit.git
+[submodule "ext/zlib"]
+	path = ext/zlib
+	url = https://github.com/madler/zlib.git
+[submodule "ext/libgit2"]
+	path = ext/libgit2
+	url = https://github.com/libgit2/libgit2.git
+[submodule "ext/spell"]
+	path = ext/spell
+	url = http://anongit.freedesktop.org/git/libreoffice/dictionaries.git
+[submodule "ext/editorconfig"]
+	path = ext/editorconfig
+	url = https://github.com/editorconfig/editorconfig-core-c.git
+[submodule "ext/pcre"]
+	path = ext/pcre
+	url = https://gitlab.com/tortoisegit/pcre.git
+[submodule "ext/simpleini"]
+	path = ext/simpleini
+	url = https://github.com/brofield/simpleini.git
+[submodule "ext/googletest"]
+	path = ext/googletest
+	url = https://github.com/google/googletest.git
