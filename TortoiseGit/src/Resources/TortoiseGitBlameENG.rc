@@ -1,0 +1,621 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "..\TortoiseGitBlame\resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "..\targetver.h"
+#endif
+#include <afxres.h>
+#include "..\TortoiseGitBlame\MenuEncode.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "..\\TortoiseGitBlame\\resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""..\\targetver.h""\r\n"
+    "#endif\r\n"
+    "#include <afxres.h>\r\n"
+    "#include ""..\\TortoiseGitBlame\\MenuEncode.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\TortoiseGitBlame.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include <afxres.rc>         // Standard components\r\n"
+    "#include <afxprint.rc>       // printing/print preview resources\r\n"
+    "#if !defined(_AFXDLL)\r\n"
+    "#include <afxribbon.rc>              // MFC ribbon and control bar resources\r\n"
+    "#endif\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_TORTOISE_GIT_BLAME_MAINFRAME ICON                    "..\\Resources\\blameres\\TortoiseGitBlame.ico"
+IDR_MAINFRAME           ICON                    "..\\Resources\\blameres\\TortoiseGitBlame.ico"
+IDR_TortoiseGitBlamTYPE ICON                    "..\\Resources\\blameres\\TortoiseGitBlameDoc.ico"
+IDI_OUTPUT_WND          ICON                    "..\\Resources\\blameres\\output_wnd.ico"
+IDI_OUTPUT_WND_HC       ICON                    "..\\Resources\\blameres\\output_wnd_hc.ico"
+IDI_PROPERTIES_WND      ICON                    "..\\Resources\\blameres\\properties_wnd.ico"
+IDI_PROPERTIES_WND_HC   ICON                    "..\\Resources\\blameres\\properties_wnd_hc.ico"
+IDI_BLAME_POPUP_BLAME   ICON                    "..\\Resources\\menublame.ico"
+IDI_BLAME_POPUP_COMPARE ICON                    "..\\Resources\\menucompare.ico"
+IDI_BLAME_POPUP_LOG     ICON                    "..\\Resources\\menulog.ico"
+IDI_BLAME_POPUP_COPY    ICON                    "..\\Resources\\copy.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_TORTOISE_GIT_BLAME_MAINFRAME BITMAP                  "..\\Resources\\blameres\\Toolbar.bmp"
+IDR_TORTOISE_GIT_BLAME_MAINFRAME_256 BITMAP                  "..\\Resources\\blameres\\Toolbar256.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_TORTOISE_GIT_BLAME_MAINFRAME TOOLBAR 16, 16
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    SEPARATOR
+    BUTTON      ID_VIEW_PREV
+    BUTTON      ID_VIEW_NEXT
+    SEPARATOR
+    BUTTON      ID_EDIT_COPY
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+
+IDR_TORTOISE_GIT_BLAME_MAINFRAME_256 TOOLBAR 16, 16
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    SEPARATOR
+    BUTTON      ID_VIEW_PREV
+    BUTTON      ID_VIEW_NEXT
+    SEPARATOR
+    BUTTON      ID_EDIT_COPY
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_TORTOISE_GIT_BLAME_MAINFRAME MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "&Settings...",                ID_FILE_SETTINGS
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM SEPARATOR
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Find\tCtrl+F",               ID_EDIT_FIND
+        MENUITEM "&Go to\tCtrl+G",              ID_EDIT_GOTO
+        MENUITEM SEPARATOR
+        POPUP "Encode"
+        BEGIN
+            MENUITEM "UTF-8",                       IDM_FORMAT_UTF8
+            MENUITEM "UTF-16 LE",                   IDM_FORMAT_UTF16LE
+            MENUITEM "UTF-16 BE",                   IDM_FORMAT_UTF16BE
+            POPUP "Arabic"
+            BEGIN
+                MENUITEM "ISO 8859-6",                  IDM_FORMAT_ISO_8859_6
+                MENUITEM "OEM 720",                     IDM_FORMAT_DOS_720
+                MENUITEM "Windows-1256",                IDM_FORMAT_WIN_1256
+            END
+            POPUP "Baltic"
+            BEGIN
+                MENUITEM "ISO 8859-4",                  IDM_FORMAT_ISO_8859_4
+                MENUITEM "ISO 8859-13",                 IDM_FORMAT_ISO_8859_13
+                MENUITEM "OEM 775",                     IDM_FORMAT_DOS_775
+                MENUITEM "Windows-1257",                IDM_FORMAT_WIN_1257
+            END
+            POPUP "Celtic"
+            BEGIN
+                MENUITEM "ISO 8859-14",                 IDM_FORMAT_ISO_8859_14
+            END
+            POPUP "Cyrillic"
+            BEGIN
+                MENUITEM "ISO 8859-5",                  IDM_FORMAT_ISO_8859_5
+                MENUITEM "KOI8-R",                      IDM_FORMAT_KOI8R_CYRILLIC
+                MENUITEM "KOI8-U",                      IDM_FORMAT_KOI8U_CYRILLIC
+                MENUITEM "Macintosh",                   IDM_FORMAT_MAC_CYRILLIC
+                MENUITEM "OEM 855",                     IDM_FORMAT_DOS_855
+                MENUITEM "OEM 866",                     IDM_FORMAT_DOS_866
+                MENUITEM "Windows-1251",                IDM_FORMAT_WIN_1251
+            END
+            POPUP "Central European"
+            BEGIN
+                MENUITEM "ISO 8859-16",                 IDM_FORMAT_ISO_8859_16
+                MENUITEM "OEM 852",                     IDM_FORMAT_DOS_852
+                MENUITEM "Windows-1250",                IDM_FORMAT_WIN_1250
+            END
+            POPUP "Chinese"
+            BEGIN
+                MENUITEM "Big5 (Traditional)",          IDM_FORMAT_BIG5
+                MENUITEM "GB2312 (Simplified)",         IDM_FORMAT_GB2312
+            END
+            POPUP "Eastern European"
+            BEGIN
+                MENUITEM "ISO 8859-2",                  IDM_FORMAT_ISO_8859_2
+            END
+            POPUP "Greek"
+            BEGIN
+                MENUITEM "ISO 8859-7",                  IDM_FORMAT_ISO_8859_7
+                MENUITEM "OEM 737",                     IDM_FORMAT_DOS_737
+                MENUITEM "OEM 869",                     IDM_FORMAT_DOS_869
+                MENUITEM "Windows-1253",                IDM_FORMAT_WIN_1253
+            END
+            POPUP "Hebrew"
+            BEGIN
+                MENUITEM "ISO 8859-8",                  IDM_FORMAT_ISO_8859_8
+                MENUITEM "OEM 862",                     IDM_FORMAT_DOS_862
+                MENUITEM "Windows-1255",                IDM_FORMAT_WIN_1255
+            END
+            POPUP "Japanese"
+            BEGIN
+                MENUITEM "Shift-JIS",                   IDM_FORMAT_SHIFT_JIS
+            END
+            POPUP "Korean"
+            BEGIN
+                MENUITEM "EUC-KR",                      IDM_FORMAT_EUC_KR
+            END
+            POPUP "North European"
+            BEGIN
+                MENUITEM "OEM 861: Icelandic",          IDM_FORMAT_DOS_861
+                MENUITEM "OEM 865: Nordic",             IDM_FORMAT_DOS_865
+            END
+            POPUP "Thai"
+            BEGIN
+                MENUITEM "ISO 8859-11",                 IDM_FORMAT_ISO_8859_11
+                MENUITEM "TIS-620",                     IDM_FORMAT_TIS_620
+            END
+            POPUP "Turkish"
+            BEGIN
+                MENUITEM "ISO 8859-3",                  IDM_FORMAT_ISO_8859_3
+                MENUITEM "ISO 8859-9",                  IDM_FORMAT_ISO_8859_9
+                MENUITEM "OEM 857",                     IDM_FORMAT_DOS_857
+                MENUITEM "Windows-1254",                IDM_FORMAT_WIN_1254
+            END
+            POPUP "Western European"
+            BEGIN
+                MENUITEM "ISO 8859-1",                  IDM_FORMAT_ISO_8859_1
+                MENUITEM "ISO 8859-10",                 IDM_FORMAT_ISO_8859_10
+                MENUITEM "ISO 8859-15",                 IDM_FORMAT_ISO_8859_15
+                MENUITEM "OEM 850",                     IDM_FORMAT_DOS_850
+                MENUITEM "OEM 858",                     IDM_FORMAT_DOS_858
+                MENUITEM "OEM 860: Portuguese",         IDM_FORMAT_DOS_860
+                MENUITEM "OEM 863: French",             IDM_FORMAT_DOS_863
+                MENUITEM "OEM-US",                      IDM_FORMAT_DOS_437
+                MENUITEM "Windows-1252",                IDM_FORMAT_WIN_1252
+            END
+            POPUP "Vietnamese"
+            BEGIN
+                MENUITEM "Windows-1258",                IDM_FORMAT_WIN_1258
+            END
+        END
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Next",                        ID_VIEW_NEXT
+        MENUITEM "Previous",                    ID_VIEW_PREV
+        MENUITEM SEPARATOR
+        POPUP "&Toolbars and Docking Windows"
+        BEGIN
+            MENUITEM "<placeholder>",               ID_VIEW_TOOLBAR
+        END
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        POPUP "&Application Look"
+        BEGIN
+            MENUITEM "Windows 2000",                ID_VIEW_APPLOOK_WIN_2000
+            MENUITEM "Office XP",                   ID_VIEW_APPLOOK_OFF_XP
+            MENUITEM "Windows XP",                  ID_VIEW_APPLOOK_WIN_XP
+            MENUITEM "Office 2003",                 ID_VIEW_APPLOOK_OFF_2003
+            MENUITEM "Visual Studio 2005",          ID_VIEW_APPLOOK_VS_2005
+            POPUP "Office 2007"
+            BEGIN
+                MENUITEM "Blue Style",                  ID_VIEW_APPLOOK_OFF_2007_BLUE
+                MENUITEM "Black Style",                 ID_VIEW_APPLOOK_OFF_2007_BLACK
+                MENUITEM "Silver Style",                ID_VIEW_APPLOOK_OFF_2007_SILVER
+                MENUITEM "Aqua Style",                  ID_VIEW_APPLOOK_OFF_2007_AQUA
+            END
+            MENUITEM "Visual Studio 2008",          ID_VIEW_APPLOOK_VS_2008
+            MENUITEM "Windows 7",                   ID_VIEW_APPLOOK_WIN7
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Show author",                 ID_VIEW_SHOWAUTHOR
+        MENUITEM "Show date",                   ID_VIEW_SHOWDATE
+        MENUITEM "Show file name",              ID_VIEW_SHOWFILENAME
+        MENUITEM "Show original line number",   ID_VIEW_SHOWORIGINALLINENUMBER
+        MENUITEM SEPARATOR
+        POPUP "&Detect moved or copied lines"
+        BEGIN
+            MENUITEM "&Disabled",                   ID_VIEW_DETECT_MOVED_OR_COPIED_LINES_DISABLED
+            MENUITEM "&Within file",                ID_VIEW_DETECT_MOVED_OR_COPIED_LINES_WITHIN_FILE
+            MENUITEM "From &modified files",        ID_VIEW_DETECT_MOVED_OR_COPIED_LINES_FROM_MODIFIED_FILES
+            MENUITEM "At file &creation",           ID_VIEW_DETECT_MOVED_OR_COPIED_LINES_FROM_EXISTING_FILES_AT_FILE_CREATION
+            MENUITEM "From &existing files",        ID_VIEW_DETECT_MOVED_OR_COPIED_LINES_FROM_EXISTING_FILES
+        END
+        MENUITEM "&Ignore whitespace",          ID_VIEW_IGNORE_WHITESPACE
+        MENUITEM SEPARATOR
+        MENUITEM "Show com&plete log",          ID_VIEW_SHOWCOMPLETELOG
+        MENUITEM "&Follow renames",             ID_VIEW_FOLLOWRENAMES
+        MENUITEM "Only consider first parents on blame", ID_VIEW_ONLYCONSIDERFIRSTPARENTS
+        MENUITEM SEPARATOR
+        MENUITEM "Color by age, &continuous",   ID_VIEW_COLORBYAGE
+        MENUITEM "Enable syntax highlighting",  ID_VIEW_ENABLELEXER
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help Topics",                ID_HELP_FINDER, INACTIVE
+        MENUITEM SEPARATOR
+        MENUITEM "&About TortoiseGitBlame...",  ID_APP_ABOUT
+    END
+END
+
+IDR_OUTPUT_POPUP MENU
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "&Copy",                       ID_EDIT_COPY
+        MENUITEM "&Clear",                      ID_EDIT_CLEAR
+        MENUITEM SEPARATOR
+        MENUITEM "&Hide",                       ID_VIEW_OUTPUTWND
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_TORTOISE_GIT_BLAME_MAINFRAME ACCELERATORS
+BEGIN
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL
+    "G",            ID_EDIT_GOTO,           VIRTKEY, CONTROL
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT
+    VK_F1,          ID_HELP,                VIRTKEY 
+    VK_F3,          ID_FIND_NEXT,           VIRTKEY, NOINVERT
+    VK_F3,          ID_FIND_PREV,           VIRTKEY, SHIFT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 230, 90
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About TortoiseGitBlame"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_TORTOISE_GIT_BLAME_MAINFRAME,IDC_STATIC,14,14,20,20
+    LTEXT           "TortoiseGitBlame",IDC_VERSION,42,14,138,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2009-2016 TortoiseGit",IDC_COPYRIGHT,42,26,156,8
+    DEFPUSHBUTTON   "OK",IDOK,173,69,50,14,WS_GROUP
+    LTEXT           "Authors:\tFrank Li (lznuaa@gmail.com),\n\t\tSven Strickroth (email@cs-ware.de)",IDC_STATIC,42,37,174,18
+    LTEXT           "Part of code come from TortoiseSVN Blame",IDC_STATIC,42,55,138,8
+END
+
+IDD_GOTODLG DIALOGEX 0, 0, 127, 52
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Go to line"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Line:",IDC_STATIC,7,10,57,8
+    EDITTEXT        IDC_LINENUMBER,36,7,84,14,ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "OK",IDOK,7,31,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,70,31,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 223
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 82
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDP_OLE_INIT_FAILED     "OLE initialization failed.  Make sure that the OLE libraries are the correct version."
+END
+
+STRINGTABLE
+BEGIN
+    IDR_TORTOISE_GIT_BLAME_MAINFRAME 
+                            "TortoiseGitBlame\n\nTortoiseGitBlam\n\n\nTortoiseGitBlame.Document\nTortoiseGitBlame.Document"
+    IDS_VERSION             "TortoiseGitBlame, Version %d.%d.%d.%d"
+    IDS_APPNAME             "TortoiseGitBlame"
+    IDS_CANNOTBLAMENOGIT    "Cannot show blame. ""%s"" is not under version control by git."
+    IDS_BLAMEERROR          "Blame error"
+    IDS_CHECKOUTFAILED      "Failed to checkout file ""%s"""
+    IDS_ERR_DIFFENERTPREPO  "TortoiseGitBlame was already initialized for the repository ""%s"". Cannot switch to another repository (""%s"") at runtime."
+    IDS_PROPERTIES_BASICINFO "Basic Info"
+    IDS_SUBJECT             "Subject"
+    IDS_BODY                "Body"
+    IDS_PARENTS             "Parent(s)"
+    IDS_FILENAME            "Filename"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "TortoiseGitBlame"
+    AFX_IDS_IDLEMESSAGE     " "
+    AFX_IDS_HELPMODEMESSAGE "Select an object on which to get Help"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_NUM        "NUM"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_DIRECT    "Print the active document using current options\nQuick Print"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+    ID_HELP_INDEX           "Opens Help\nHelp Topics"
+    ID_HELP_FINDER          "List Help topics\nHelp Topics"
+    ID_HELP_USING           "Display instructions about how to use help\nHelp"
+    ID_CONTEXT_HELP         "Display help for clicked on buttons, menus and windows\nHelp"
+    ID_HELP                 "Display help for current task or command\nHelp"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_EDIT_MENU           "Edit"
+    IDS_GIT_LOG_TAB         "Git Log"
+    ID_VIEW_NEXT            "Show next change of selected commit\nShow next"
+    ID_VIEW_PREV            "Show previous change of selected commit\nShow previous"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle Status Bar"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_STATUS_PANE1        "Pane 1"
+    IDS_STATUS_PANE2        "Pane 2"
+    IDS_TOOLBAR_STANDARD    "Standard"
+    IDS_TOOLBAR_CUSTOMIZE   "Customize..."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_OUTPUT_WND          "Git Revision List"
+    IDS_PROPERTIES_WND      "Commit Info"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_ENCODING   " "
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_IGNORE_WHITESPACE 
+                            "Ignore whitespace when comparing the parents version and the child's "
+    ID_VIEW_SHOWCOMPLETELOG "Git revision list contains the complete file history"
+    ID_VIEW_DETECT_MOVED_OR_COPIED_LINES_WITHIN_FILE 
+                            "Detect moved or copied lines within a file"
+    ID_VIEW_DETECT_MOVED_OR_COPIED_LINES_FROM_MODIFIED_FILES 
+                            "Detect moved and copied lines from files modified in the same commit"
+    ID_VIEW_DETECT_MOVED_OR_COPIED_LINES_FROM_EXISTING_FILES_AT_FILE_CREATION 
+                            "Detect moved and copied lines from existing files at the commit where the destination file has been created"
+    ID_VIEW_DETECT_MOVED_OR_COPIED_LINES_FROM_EXISTING_FILES 
+                            "Detect moved and copied lines from existing files at any commit"
+    IDS_BLAME_POPUP_BLAME   "Blame previous revision"
+    IDS_BLAME_POPUP_COMPARE "Compare with previous revision"
+    IDS_BLAME_POPUP_LOG     "Show log"
+    IDS_BLAME_POPUP_PARENT  "Parent %d"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_FOLLOWRENAMES   "Git revision list follows file renames"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_BLAME_POPUP_COPYHASHTOCLIPBOARD "Copy SHA-1 to clipboard"
+    IDS_BLAME_POPUP_COPYLOGTOCLIPBOARD "Copy log to clipboard"
+    ID_VIEW_SHOWFILENAME    "Show file name"
+    ID_VIEW_SHOWORIGINALLINENUMBER "Show original line number"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\TortoiseGitBlame.rc2"  // non-Microsoft Visual C++ edited resources
+#include <afxres.rc>         // Standard components
+#include <afxprint.rc>       // printing/print preview resources
+#if !defined(_AFXDLL)
+#include <afxribbon.rc>              // MFC ribbon and control bar resources
+#endif
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

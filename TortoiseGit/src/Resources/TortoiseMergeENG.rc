@@ -1,0 +1,1301 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "..\TortoiseMerge\resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include <afxres.h>
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "TortoiseMerge.ico"
+IDI_REMOVEDLINE         ICON                    "lineremoved.ico"
+IDI_ADDEDLINE           ICON                    "lineadded.ico"
+IDI_CONFLICTEDLINE      ICON                    "lineconflicted.ico"
+IDI_WHITESPACELINE      ICON                    "linewhitespace.ico"
+IDI_EQUALLINE           ICON                    "lineequal.ico"
+IDI_LINEENDINGCR        ICON                    "LineEndingCR.ico"
+IDI_LINEENDINGCRLF      ICON                    "LineEndingCRLF.ico"
+IDI_LINEENDINGLF        ICON                    "LineEndingLF.ico"
+IDI_CONFLICTEDIGNOREDLINE ICON                    "lineconflictedignored.ico"
+IDI_LINEEDITED          ICON                    "lineedited.ico"
+IDI_MOVEDLINE           ICON                    "moved.ico"
+IDI_LINEMARKED          ICON                    "linemarked.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUT DIALOGEX 0, 0, 333, 249
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About TortoiseGitMerge"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Author:\t\t\t\tStefan Kueng",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,14,68,309,8
+    LTEXT           "Icons/Design/Code:\t\tLuebbe Onken",IDC_STATIC,14,80,306,8
+    DEFPUSHBUTTON   "OK",IDOK,276,228,50,14
+    GROUPBOX        "Version",IDC_VERSIONBOX,7,123,319,99
+    EDITTEXT        IDC_VERSIONABOUT,14,134,304,85,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER
+    LTEXT           "Visit our website",IDC_WEBLINK,14,95,312,8
+    LTEXT           "and support the developers",IDC_SUPPORTLINK,14,105,312,8
+END
+
+IDD_DIFFLOCATOR DIALOGEX 0, 0, 20, 314
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+IDD_LINEDIFF DIALOGEX 0, 0, 428, 23
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DIFFLOCATOR, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 13
+        BOTTOMMARGIN, 202
+    END
+
+    IDD_LINEDIFF, DIALOG
+    BEGIN
+        RIGHTMARGIN, 427
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_LOGOFLIPPED         BITMAP                  "tortoisemerge_logoflipped.bmp"
+IDB_TTF_BMP             BITMAP                  "ttf_glyph.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AVI
+//
+
+IDR_DOWNLOAD            AVI                     "download.avi"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_MARGINCURSOR        CURSOR                  "Margin.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// PNG
+//
+
+IDB_RIBBONLARGE         PNG                     "ribbon\\ribbonlarge.png"
+IDB_RIBBONSMALL         PNG                     "ribbon\\ribbonsmall.png"
+IDB_LOGO                PNG                     "ribbon\\TortoiseMerge.png"
+IDB_RIBBONSMALLHDPI     PNG                     "ribbon\\ribbonsmallhdpi.png"
+IDB_RIBBONLARGEHDPI     PNG                     "ribbon\\ribbonlargehdpi.png"
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FILEPATCHES DIALOGEX 0, 0, 133, 221
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "File patches"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_FILELIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_TABSTOP,0,0,131,184
+    PUSHBUTTON      "Patch &selected item",IDC_PATCHSELECTEDBUTTON,0,189,132,14,WS_DISABLED
+    PUSHBUTTON      "Patch &all items",IDC_PATCHALLBUTTON,0,206,132,14
+END
+
+IDD_OPENDLG DIALOGEX 0, 0, 325, 209
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CONTEXTHELP
+CAPTION "TortoiseGitMerge"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "&Merging",IDC_MERGERADIO,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,18,75,10
+    CONTROL         "&Apply unified diff",IDC_APPLYRADIO,"Button",BS_AUTORADIOBUTTON,96,18,152,10
+    LTEXT           "Base file:",IDC_STATIC,14,48,82,8
+    EDITTEXT        IDC_BASEFILEEDIT,96,45,152,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Browse...",IDC_BASEFILEBROWSE,260,46,50,14
+    LTEXT           "Their file:",IDC_STATIC,14,69,82,8
+    EDITTEXT        IDC_THEIRFILEEDIT,96,66,152,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "B&rowse...",IDC_THEIRFILEBROWSE,260,67,50,14
+    LTEXT           "My file:",IDC_STATIC,14,91,82,8
+    EDITTEXT        IDC_YOURFILEEDIT,96,88,152,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Br&owse...",IDC_YOURFILEBROWSE,260,89,50,14
+    CONTROL         "Use Unified Diff from &clipboard",IDC_PATCHFROMCLIPBOARD,
+                    "Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,14,129,234,10
+    LTEXT           "Diff file:",IDC_STATIC,14,145,82,8
+    EDITTEXT        IDC_DIFFFILEEDIT,96,142,152,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Browse...",IDC_DIFFFILEBROWSE,260,142,50,14
+    LTEXT           "Directory:",IDC_STATIC,14,164,82,8
+    EDITTEXT        IDC_DIRECTORYEDIT,96,162,152,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "B&rowse...",IDC_DIRECTORYBROWSE,260,163,50,14
+    DEFPUSHBUTTON   "OK",IDOK,7,188,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,127,188,50,14
+    PUSHBUTTON      "Help",IDHELP,268,188,50,14
+    LTEXT           "",IDC_VERSIONSTRING,7,7,311,8,SS_CENTERIMAGE
+    GROUPBOX        "Merging",IDC_MERGEGROUP,7,34,311,77
+    GROUPBOX        "Apply unified diff",IDC_UNIDIFFGROUP,7,117,311,66
+END
+
+IDD_SETMAINPAGE DIALOGEX 0, 0, 265, 250
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "General"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "&Backup original file",IDC_BACKUP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,10,236,10
+    CONTROL         "&Jump to first difference when loading",IDC_FIRSTDIFFONLOAD,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,21,236,10
+    CONTROL         "J&ump to first conflict when loading",IDC_FIRSTCONFLICTONLOAD,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,26,33,225,10
+    CONTROL         "Default to UTF-8 encoding",IDC_UTF8DEFAULT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,45,236,10
+    CONTROL         "Use &one-pane view as default for 2-file diff",IDC_ONEPANE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,56,236,10
+    CONTROL         "Show linenumber&s",IDC_LINENUMBERS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,67,236,10
+    CONTROL         "Add new files automatically to Git",IDC_AUTOADD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,79,236,10
+    CONTROL         "Use Ribbons",IDC_USERIBBONS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,90,109,10
+    CONTROL         "Use spaces",IDC_USESPACES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,103,95,10
+    CONTROL         "Smart tab char",IDC_SMARTTABCHAR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,130,103,95,10
+    LTEXT           "&Tab size:",IDC_STATIC,15,118,54,8
+    EDITTEXT        IDC_TABSIZE,80,115,41,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Enable EditorConfig",IDC_ENABLEEDITORCONFIG,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,149,118,102,10
+    LTEXT           "&Font:",IDC_STATIC,15,135,52,8
+    COMBOBOX        IDC_FONTNAMES,80,133,122,90,CBS_DROPDOWNLIST | CBS_OWNERDRAWVARIABLE | CBS_SORT | CBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_FONTSIZES,211,133,40,47,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Max line length for inline diffs",IDC_STATIC,15,172,173,8
+    EDITTEXT        IDC_MAXINLINE,211,170,40,14,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Ignore line &endings (recommended)",IDC_IGNORELF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,185,237,10
+    CONTROL         "Ignore case cha&nges",IDC_CASEINSENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,196,236,10
+    GROUPBOX        "Misc",IDC_MISCGROUP,7,0,251,151
+    GROUPBOX        "Diffing",IDC_DIFFGROUP,7,161,251,82
+    LTEXT           "Context lines for patches",IDC_STATIC,16,210,172,8
+    EDITTEXT        IDC_CONTEXTLINES,211,207,40,14,ES_RIGHT | ES_AUTOHSCROLL
+END
+
+IDD_SETCOLORPAGE DIALOGEX 0, 0, 265, 257
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Colors"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "Line differences",IDC_STATIC,7,7,251,149
+    LTEXT           "Foreground",IDC_STATIC,96,18,76,8,0,WS_EX_RIGHT
+    LTEXT           "Background",IDC_STATIC,181,17,75,8
+    LTEXT           "Normal",IDC_STATIC,15,32,90,8
+    PUSHBUTTON      "",IDC_FGNORMAL,122,31,50,14
+    PUSHBUTTON      "",IDC_BKNORMAL,181,30,50,14
+    LTEXT           "Added",IDC_STATIC,15,48,90,8
+    PUSHBUTTON      "",IDC_FGADDED,122,47,50,14
+    PUSHBUTTON      "",IDC_BKADDED,181,46,50,14
+    LTEXT           "Removed",IDC_STATIC,15,65,90,8
+    PUSHBUTTON      "",IDC_FGREMOVED,122,63,50,14
+    PUSHBUTTON      "",IDC_BKREMOVED,181,63,50,14
+    LTEXT           "Modified",IDC_STATIC,15,82,90,8
+    PUSHBUTTON      "",IDC_BKMODIFIED,181,80,50,14
+    LTEXT           "Conflicted",IDC_STATIC,15,99,90,8
+    PUSHBUTTON      "",IDC_FGCONFLICTED,122,98,50,14
+    PUSHBUTTON      "",IDC_BKCONFLICTED,181,97,50,14
+    LTEXT           "Conflict resolved",IDC_STATIC,15,116,90,8
+    PUSHBUTTON      "",IDC_FGCONFLICTRESOLVED,122,114,50,14
+    PUSHBUTTON      "",IDC_BKCONFLICTRESOLVED,181,114,50,14
+    LTEXT           "Empty",IDC_STATIC,15,132,90,8
+    PUSHBUTTON      "",IDC_FGEMPTY,122,130,50,14
+    PUSHBUTTON      "",IDC_BKEMPTY,181,130,50,14
+    GROUPBOX        "Inline differences",IDC_STATIC,7,158,251,43
+    LTEXT           "Added",IDC_STATIC,15,169,90,8
+    PUSHBUTTON      "",IDC_BKWHITESPACES,181,167,50,14
+    LTEXT           "Removed",IDC_STATIC,15,185,90,8
+    PUSHBUTTON      "",IDC_BKWHITESPACEDIFF,181,183,50,14
+    GROUPBOX        "Misc",IDC_STATIC,7,201,251,26
+    LTEXT           "Whitespaces",IDC_STATIC,15,211,90,8
+    PUSHBUTTON      "",IDC_FGWHITESPACES,122,210,50,14
+    PUSHBUTTON      "Restore Default",IDC_RESTORE,176,236,82,14
+END
+
+IDD_FIND DIALOGEX 0, 0, 345, 108
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Find"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Search for:",IDC_STATIC,7,10,79,8
+    CONTROL         "",IDC_FINDCOMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,90,7,154,95
+    LTEXT           "Replace with:",IDC_STATIC,7,28,79,8
+    CONTROL         "",IDC_REPLACECOMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,90,26,154,95
+    CONTROL         "Match &case",IDC_MATCHCASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,42,90,10
+    CONTROL         "&Limit search to modified lines",IDC_LIMITTODIFFS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,55,169,10
+    CONTROL         "Search &up",IDC_SEARCHUP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,79,10
+    CONTROL         "&Whole word",IDC_WHOLEWORD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,80,98,10
+    DEFPUSHBUTTON   "&Find",IDOK,248,7,90,14,WS_DISABLED
+    PUSHBUTTON      "&Replace",IDC_REPLACE,248,26,90,14,WS_DISABLED
+    PUSHBUTTON      "Replace &All",IDC_REPLACEALL,248,45,90,14,WS_DISABLED
+    PUSHBUTTON      "Coun&t",IDC_COUNT,248,65,90,14
+    PUSHBUTTON      "Cancel",IDCANCEL,248,81,90,14
+    LTEXT           "",IDC_FINDSTATUS,7,98,331,8
+END
+
+IDD_ENCODING DIALOGEX 0, 0, 229, 92
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Encoding"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Encoding",IDC_STATIC_ENCODING,7,31,30,8
+    COMBOBOX        IDC_COMBO_ENCODING,85,29,136,30,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "EOL",IDC_STATIC_EOL,7,50,30,8
+    COMBOBOX        IDC_COMBO_EOL,85,49,136,30,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,118,70,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,172,70,50,14
+    LTEXT           "",IDC_VIEW,7,7,215,8
+END
+
+IDD_GOTO DIALOGEX 0, 0, 175, 69
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Go To Line"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,59,48,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,118,48,50,14
+    LTEXT           "&Line number",IDC_LINELABEL,7,7,161,8
+    EDITTEXT        IDC_NUMBER,7,20,161,14,ES_AUTOHSCROLL | ES_NUMBER
+END
+
+IDD_REGEXFILTERS DIALOGEX 0, 0, 321, 183
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Regex Filters"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,211,162,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,264,162,50,14
+    CONTROL         "",IDC_REGEXLIST,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,307,131
+    PUSHBUTTON      "&Add Filter",IDC_ADD,92,141,68,14
+    PUSHBUTTON      "&Edit Filter",IDC_EDIT,169,141,68,14,WS_DISABLED
+    PUSHBUTTON      "&Delete Filter",IDC_REMOVE,246,141,68,14,WS_DISABLED
+END
+
+IDD_REGEXFILTER DIALOGEX 0, 0, 309, 86
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Regex Filter"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,198,65,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,252,65,50,14
+    LTEXT           "Name:",IDC_STATIC,7,9,61,8
+    EDITTEXT        IDC_NAME,74,7,228,14,ES_AUTOHSCROLL
+    LTEXT           "Regex:",IDC_STATIC,7,26,61,8
+    EDITTEXT        IDC_REGEX,74,24,228,14,ES_AUTOHSCROLL
+    LTEXT           "Replace:",IDC_STATIC,7,45,61,8
+    EDITTEXT        IDC_REPLACE,74,42,228,14,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_FILEPATCHES, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 220
+    END
+
+    IDD_OPENDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 318
+        VERTGUIDE, 14
+        VERTGUIDE, 96
+        VERTGUIDE, 248
+        VERTGUIDE, 310
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 202
+    END
+
+    IDD_SETMAINPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 258
+        VERTGUIDE, 7
+        VERTGUIDE, 15
+        VERTGUIDE, 80
+        VERTGUIDE, 188
+        VERTGUIDE, 211
+        VERTGUIDE, 251
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 243
+    END
+
+    IDD_SETCOLORPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 258
+        VERTGUIDE, 15
+        VERTGUIDE, 172
+        VERTGUIDE, 181
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 250
+    END
+
+    IDD_FIND, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 338
+        VERTGUIDE, 86
+        VERTGUIDE, 90
+        VERTGUIDE, 244
+        VERTGUIDE, 248
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 106
+    END
+
+    IDD_ENCODING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 222
+        VERTGUIDE, 85
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 85
+    END
+
+    IDD_GOTO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 168
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 62
+    END
+
+    IDD_REGEXFILTERS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 314
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 176
+        HORZGUIDE, 155
+    END
+
+    IDD_REGEXFILTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 302
+        VERTGUIDE, 68
+        VERTGUIDE, 74
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 79
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR 16, 16
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_FILE_RELOAD
+    BUTTON      ID_EDIT_UNDO
+    SEPARATOR
+    BUTTON      ID_NAVIGATE_PREVIOUSDIFFERENCE
+    BUTTON      ID_NAVIGATE_NEXTDIFFERENCE
+    BUTTON      ID_NAVIGATE_PREVIOUSCONFLICT
+    BUTTON      ID_NAVIGATE_NEXTCONFLICT
+    SEPARATOR
+    BUTTON      ID_EDIT_USELEFTBLOCK
+    SEPARATOR
+    BUTTON      ID_EDIT_USETHEIRBLOCK
+    BUTTON      ID_EDIT_USEMYBLOCK
+    BUTTON      ID_EDIT_USETHEIRTHENMYBLOCK
+    BUTTON      ID_EDIT_USEMINETHENTHEIRBLOCK
+    SEPARATOR
+    BUTTON      ID_EDIT_MARKASRESOLVED
+    SEPARATOR
+    BUTTON      ID_VIEW_WHITESPACES
+    BUTTON      ID_VIEW_WRAPLONGLINES
+    SEPARATOR
+    BUTTON      ID_VIEW_INLINEDIFF
+    BUTTON      ID_VIEW_INLINEDIFFWORD
+    BUTTON      ID_VIEW_COMPAREWHITESPACES
+    BUTTON      ID_VIEW_IGNOREWHITESPACECHANGES
+    BUTTON      ID_VIEW_IGNOREALLWHITESPACECHANGES
+    SEPARATOR
+    BUTTON      ID_VIEW_ONEWAYDIFF
+    BUTTON      ID_VIEW_SWITCHLEFT
+    BUTTON      ID_VIEW_COLLAPSED
+    BUTTON      ID_VIEW_SHOWFILELIST
+    SEPARATOR
+    BUTTON      ID_VIEW_OPTIONS
+    SEPARATOR
+    BUTTON      ID_HELP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "Open",                        ID_FILE_OPEN
+        MENUITEM "Save",                        ID_FILE_SAVE
+        MENUITEM "Save &as...",                 ID_FILE_SAVE_AS
+        MENUITEM "Mark as resolved",            ID_EDIT_MARKASRESOLVED
+        MENUITEM SEPARATOR
+        MENUITEM "Create patch file",           ID_EDIT_CREATEUNIFIEDDIFFFILE
+        MENUITEM SEPARATOR
+        MENUITEM "Reload",                      ID_FILE_RELOAD
+        MENUITEM "&Enable edit",                ID_EDIT_ENABLE
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo",                       ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "&Copy",                       ID_EDIT_COPY
+        MENUITEM "&Paste",                      ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Use left block",              ID_EDIT_USELEFTBLOCK
+        MENUITEM "Use left file",               ID_EDIT_USELEFTFILE
+        MENUITEM "Use block from left before right", ID_EDIT_USEBLOCKFROMLEFTBEFORERIGHT
+        MENUITEM "Use block from right before left", ID_EDIT_USEBLOCKFROMRIGHTBEFORELEFT
+        MENUITEM SEPARATOR
+        MENUITEM "Use 'theirs' text block",     ID_EDIT_USETHEIRBLOCK
+        MENUITEM "Use 'mine' text block",       ID_EDIT_USEMYBLOCK
+        MENUITEM "Use 'theirs' text block then 'mine'", ID_EDIT_USETHEIRTHENMYBLOCK
+        MENUITEM "Use 'mine' text block then 'theirs'", ID_EDIT_USEMINETHENTHEIRBLOCK
+        MENUITEM SEPARATOR
+        MENUITEM "Find",                        ID_EDIT_FIND
+        MENUITEM "Goto Line",                   ID_EDIT_GOTOLINE
+        MENUITEM SEPARATOR
+        POPUP "Regex Filter"
+        BEGIN
+            MENUITEM "Configure Filter Regexes",    ID_REGEXFILTER
+        END
+        MENUITEM "Ignore Comments",             ID_VIEW_IGNORECOMMENTS
+    END
+    POPUP "&Navigate"
+    BEGIN
+        MENUITEM "Next difference",             ID_NAVIGATE_NEXTDIFFERENCE
+        MENUITEM "Previous difference",         ID_NAVIGATE_PREVIOUSDIFFERENCE
+        MENUITEM "Next conflict",               ID_NAVIGATE_NEXTCONFLICT
+        MENUITEM "Previous conflict",           ID_NAVIGATE_PREVIOUSCONFLICT
+        MENUITEM "Next inline difference",      ID_NAVIGATE_NEXTINLINEDIFF
+        MENUITEM "Previous inline difference",  ID_NAVIGATE_PREVINLINEDIFF
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM "Line diff bar",               ID_VIEW_LINEDIFFBAR, CHECKED
+        MENUITEM "Locator Bar",                 ID_VIEW_LOCATORBAR
+        MENUITEM SEPARATOR
+        MENUITEM "Wrap long lines",             ID_VIEW_WRAPLONGLINES
+        MENUITEM "&Moved blocks",               ID_VIEW_MOVEDBLOCKS
+        MENUITEM "Inline diff",                 ID_VIEW_INLINEDIFF
+        MENUITEM "Inline diff word-wise",       ID_VIEW_INLINEDIFFWORD
+        MENUITEM "Compare whitespaces",         ID_VIEW_COMPAREWHITESPACES
+        MENUITEM "Ignore whitespace changes",   ID_VIEW_IGNOREWHITESPACECHANGES
+        MENUITEM "Ignore all whitespace changes", ID_VIEW_IGNOREALLWHITESPACECHANGES
+        MENUITEM "Ignore Comments",             ID_VIEW_IGNORECOMMENTS
+        MENUITEM SEPARATOR
+        MENUITEM "Show Whitespaces",            ID_VIEW_WHITESPACES
+        MENUITEM "Switch between single and double pane view", ID_VIEW_ONEWAYDIFF
+        MENUITEM "Switch left and right view",  ID_VIEW_SWITCHLEFT
+        MENUITEM "Collapse",                    ID_VIEW_COLLAPSED
+        MENUITEM SEPARATOR
+        MENUITEM "Settings",                    ID_VIEW_OPTIONS
+        MENUITEM SEPARATOR
+        MENUITEM "Hide/Show the patch file list", ID_VIEW_SHOWFILELIST
+        MENUITEM SEPARATOR
+        POPUP "Style"
+        BEGIN
+            MENUITEM "Windows 2000",                ID_VIEW_APPLOOK_WIN_2000
+            MENUITEM "Office XP",                   ID_VIEW_APPLOOK_OFF_XP
+            MENUITEM "Windows XP",                  ID_VIEW_APPLOOK_WIN_XP
+            MENUITEM "Office 2003",                 ID_VIEW_APPLOOK_OFF_2003
+            MENUITEM "Visual Studio 2005",          ID_VIEW_APPLOOK_VS_2005
+            MENUITEM "Visual Studio 2008",          ID_VIEW_APPLOOK_VS_2008
+            MENUITEM "Windows 7",                   ID_VIEW_APPLOOK_WIN7
+            POPUP "Office 2007 colors"
+            BEGIN
+                MENUITEM "Blue Style",                  ID_VIEW_APPLOOK_OFF_2007_BLUE
+                MENUITEM "Black Style",                 ID_VIEW_APPLOOK_OFF_2007_BLACK
+                MENUITEM "Silver Style",                ID_VIEW_APPLOOK_OFF_2007_SILVER
+                MENUITEM "Aqua Style",                  ID_VIEW_APPLOOK_OFF_2007_AQUA
+            END
+        END
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help Topics",                ID_HELP
+        MENUITEM SEPARATOR
+        MENUITEM "&About TortoiseGitMerge...",  ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    "Q",            ID_APP_EXIT,            VIRTKEY, CONTROL, NOINVERT
+    VK_ESCAPE,      ID_APP_EXIT,            VIRTKEY, NOINVERT
+    "W",            ID_APP_EXIT,            VIRTKEY, CONTROL, NOINVERT
+    VK_DOWN,        ID_CARET_DOWN,          VIRTKEY, NOINVERT
+    VK_DOWN,        ID_CARET_DOWN,          VIRTKEY, SHIFT, NOINVERT
+    VK_LEFT,        ID_CARET_LEFT,          VIRTKEY, NOINVERT
+    VK_LEFT,        ID_CARET_LEFT,          VIRTKEY, SHIFT, NOINVERT
+    VK_RIGHT,       ID_CARET_RIGHT,         VIRTKEY, NOINVERT
+    VK_RIGHT,       ID_CARET_RIGHT,         VIRTKEY, SHIFT, NOINVERT
+    VK_UP,          ID_CARET_UP,            VIRTKEY, NOINVERT
+    VK_UP,          ID_CARET_UP,            VIRTKEY, SHIFT, NOINVERT
+    VK_LEFT,        ID_CARET_WORDLEFT,      VIRTKEY, CONTROL, NOINVERT
+    VK_LEFT,        ID_CARET_WORDLEFT,      VIRTKEY, SHIFT, CONTROL, NOINVERT
+    VK_RIGHT,       ID_CARET_WORDRIGHT,     VIRTKEY, CONTROL, NOINVERT
+    VK_RIGHT,       ID_CARET_WORDRIGHT,     VIRTKEY, SHIFT, CONTROL, NOINVERT
+    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT, NOINVERT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    VK_F3,          ID_EDIT_FINDNEXT,       VIRTKEY, NOINVERT
+    VK_F3,          ID_EDIT_FINDNEXTSTART,  VIRTKEY, CONTROL, NOINVERT
+    VK_F3,          ID_EDIT_FINDPREV,       VIRTKEY, SHIFT, NOINVERT
+    VK_F3,          ID_EDIT_FINDPREVSTART,  VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "G",            ID_EDIT_GOTOLINE,       VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "A",            ID_EDIT_SELECTALL,      VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    VK_F12,         ID_EDIT_USELEFTBLOCK,   VIRTKEY, NOINVERT
+    VK_RIGHT,       ID_EDIT_USELEFTBLOCK,   VIRTKEY, ALT, NOINVERT
+    VK_F10,         ID_EDIT_USEMINETHENTHEIRBLOCK, VIRTKEY, SHIFT, CONTROL, NOINVERT
+    VK_F10,         ID_EDIT_USEMYBLOCK,     VIRTKEY, CONTROL, NOINVERT
+    VK_F12,         ID_EDIT_USEMYBLOCK,     VIRTKEY, SHIFT, NOINVERT
+    VK_F9,          ID_EDIT_USETHEIRBLOCK,  VIRTKEY, CONTROL, NOINVERT
+    VK_F9,          ID_EDIT_USETHEIRTHENMYBLOCK, VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "R",            ID_FILE_RELOAD,         VIRTKEY, CONTROL, NOINVERT
+    VK_F5,          ID_FILE_RELOAD,         VIRTKEY, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE_AS,        VIRTKEY, SHIFT, CONTROL, NOINVERT
+    VK_F1,          ID_HELP,                VIRTKEY, NOINVERT
+    VK_F8,          ID_NAVIGATE_NEXTCONFLICT, VIRTKEY, NOINVERT
+    VK_DOWN,        ID_NAVIGATE_NEXTDIFFERENCE, VIRTKEY, CONTROL, NOINVERT
+    VK_DOWN,        ID_NAVIGATE_NEXTDIFFERENCE, VIRTKEY, ALT, NOINVERT
+    VK_F11,         ID_NAVIGATE_NEXTDIFFERENCE, VIRTKEY, NOINVERT
+    VK_F7,          ID_NAVIGATE_NEXTDIFFERENCE, VIRTKEY, NOINVERT
+    VK_RIGHT,       ID_NAVIGATE_NEXTINLINEDIFF, VIRTKEY, CONTROL, ALT, NOINVERT
+    VK_LEFT,        ID_NAVIGATE_PREVINLINEDIFF, VIRTKEY, CONTROL, ALT, NOINVERT
+    VK_F8,          ID_NAVIGATE_PREVIOUSCONFLICT, VIRTKEY, SHIFT, NOINVERT
+    VK_F11,         ID_NAVIGATE_PREVIOUSDIFFERENCE, VIRTKEY, CONTROL, NOINVERT
+    VK_F11,         ID_NAVIGATE_PREVIOUSDIFFERENCE, VIRTKEY, SHIFT, NOINVERT
+    VK_F7,          ID_NAVIGATE_PREVIOUSDIFFERENCE, VIRTKEY, SHIFT, NOINVERT
+    VK_UP,          ID_NAVIGATE_PREVIOUSDIFFERENCE, VIRTKEY, CONTROL, NOINVERT
+    VK_UP,          ID_NAVIGATE_PREVIOUSDIFFERENCE, VIRTKEY, ALT, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    "L",            ID_VIEW_COLLAPSED,      VIRTKEY, CONTROL, NOINVERT
+    "D",            ID_VIEW_ONEWAYDIFF,     VIRTKEY, CONTROL, NOINVERT
+    "U",            ID_VIEW_SWITCHLEFT,     VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_VIEW_WHITESPACES,    VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_VIEW_WRAPLONGLINES,  VIRTKEY, CONTROL, NOINVERT
+    "E",            ID_EDIT_ENABLE,         VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Ribbon
+//
+
+IDR_RIBBON              RT_RIBBON_XML           "ribbon.mfcribbon-ms"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// CONFIG
+//
+
+IDR_REGEXFILTERINI      CONFIG                  "RegexFilter.ini"
+IDR_IGNORECOMMENTSTXT   CONFIG                  "ignorecomments.txt"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "TortoiseGitMerge"
+    IDS_TITLE_REJECTEDHUNKS "Rejected patch hunks for '%s'"
+    IDS_CONFIGUREREGEXES    "Configure Filter Regexes"
+    IDS_ASKFORSAVE_MARKEDBLOCKS "Marked Blocks"
+    IDS_WARNMARKEDBLOCKS    "You have marked changed blocks. How should those blocks be saved?"
+    IDS_MARKEDBLOCKSSAVEINCLUDE 
+                            "Save and include\nYour changes are saved and the marked blocks are included"
+    IDS_MARKEDBLOCKSSAVEEXCLUDE 
+                            "Save and exclude\nYour changes are saved and the original content is used"
+    IDS_MARKEDBLCOKSSAVEIGNORE 
+                            "Save and ignore marked blocks\nOnly your manual edits are saved, marked blocks are left as they are"
+    IDS_MSGBOX_YES          "&Yes"
+    IDS_MSGBOX_NO           "&No"
+    IDS_MSGBOX_CANCEL       "Cancel"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PATH                "Path"
+    IDS_STATE               "State"
+    IDS_STATE_ERROR         "Error"
+    IDS_STATE_PATCHED       "patched"
+    IDS_STATE_CONFLICTS     "Conflicted"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_PATCH_FILENAMENOTUNIQUE 
+                            "TortoiseGitMerge cannot process this patch file. The filename ""%s"" appears more than once."
+    IDS_ERR_MAINFRAME_FILECONFLICTNOVERSION 
+                            "The patch does not apply cleanly to %s and no version information is given.\nPatching is not possible!"
+    IDS_MOVED_FROM_TT       "Line moved from line %ld"
+    IDS_MOVED_TO_TT         "Line moved to line %ld"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ENCODING_COMBO_TOOLTIP 
+                            "Encoding\nConvert to the specified encoding\nHold down the Ctrl key to reload the file with the specified encoding."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FIND_COUNT          "Count: %u matches."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FIND_NOTFOUND       "Find: Can't find the text ""%s"""
+    IDS_FIND_BOTTOMREACHED  "Find: First occurrence from the top found. End of document reached."
+    IDS_FIND_TOPREACHED     "Find: First occurrence from the bottom found. Beginning of document reached."
+    IDS_FIND_REPLACED       "Replaced %d matches"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "TortoiseGitMerge"
+    AFX_IDS_IDLEMESSAGE     "For Help, press F1. Scroll horizontally with Ctrl-Scrollwheel"
+    AFX_IDS_HELPMODEMESSAGE "Select an object on which to get Help"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+    ID_HELP_INDEX           "Opens Help\nHelp Topics"
+    ID_HELP_FINDER          "List Help topics\nHelp Topics"
+    ID_HELP_USING           "Display instructions about how to use help\nHelp"
+    ID_CONTEXT_HELP         "Display help for clicked on buttons, menus and windows\nHelp"
+    ID_HELP                 "Display help for current task or command\nHelp"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last modifications\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SELECTFILE          "Select File..."
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_WHITESPACES     "Show special characters for whitespaces and newlines\nShow Whitespaces"
+    ID_VIEW_ONEWAYDIFF      "Switch between single and double pane view\nSwitch between single and double pane view"
+    ID_NAVIGATE_NEXTDIFFERENCE "Go to the next difference\nNext difference"
+    ID_NAVIGATE_PREVIOUSDIFFERENCE 
+                            "Go to the previous difference\nPrevious difference"
+    ID_VIEW_OPTIONS         "Adjust the settings\nSettings"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_PATCH_NOADDFILELINE 
+                            "The line indicating the new file was expected in line %d !"
+    IDS_ERR_PATCH_UNKOWNLINETYPE "An unknown line type was found in line %d !"
+    IDS_ERR_PATCH_CHUNKMISMATCH 
+                            "The chunk size did not match the number of added/removed lines!"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_PATCH_INVALIDPATCHFILE "The file %s does not exist!"
+    IDS_ERR_PATCH_FILENOTINPATCH 
+                            "The file %s was not found in the patch file!"
+    IDS_ERR_PATCH_DOESNOTMATCH 
+                            "The patch seems outdated! The file line\n%s\nand the patchline\n%s\ndo not match!"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_MAINFRAME_FILEVERSIONNOTFOUND 
+                            "Could not retrieve revision %s of the file %s.\nPatching is not possible!"
+    IDS_ERR_MAINFRAME_FILEHASCONFLICTS 
+                            "There are still unresolved conflicts in line %d!\nYou should resolve those conflicts first before saving.\nDo you want to save the file with the conflicts still there?\nIf you click YES, then you have to manually resolve the conflicts in another editor!"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_LEFTVIEW   " "
+    ID_INDICATOR_RIGHTVIEW  " "
+    ID_INDICATOR_BOTTOMVIEW " "
+END
+
+STRINGTABLE
+BEGIN
+    IDS_STATUSBAR_REMOVEDLINES "- %d"
+    IDS_STATUSBAR_ADDEDLINES "+ %d"
+    IDS_STATUSBAR_CONFLICTEDLINES "! %d"
+    IDS_STATUSBAR_LEFTVIEW  "Left View: "
+    IDS_STATUSBAR_RIGHTVIEW "Right View: "
+    IDS_STATUSBAR_CONFLICTS "Conflicts: %d"
+    IDS_STATUSBAR_BOTTOMVIEW "Bottom View:"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_VIEWCONTEXTMENU_USETHISBLOCK "Use th&is text block"
+    IDS_VIEWCONTEXTMENU_USETHEIRBLOCK "Use text block from '&theirs'"
+    IDS_VIEWCONTEXTMENU_USEYOURBLOCK "Use text block from '&mine'"
+    IDS_VIEWCONTEXTMENU_USETHEIRANDYOURBLOCK 
+                            "Use text block from 't&heirs' before 'mine'"
+    IDS_VIEWCONTEXTMENU_USEYOURANDTHEIRBLOCK 
+                            "Use text block from 'm&ine' before 'theirs'"
+    IDS_VIEWCONTEXTMENU_USETHISFILE "Use this &whole file"
+    IDS_VIEWCONTEXTMENU_USEOTHERBLOCK "Use &other text block"
+    IDS_VIEWCONTEXTMENU_USEOTHERFILE "Use whole other &file"
+    IDS_VIEWCONTEXTMENU_USEBOTHTHISFIRST 
+                            "Use both text blocks (this one first)"
+    IDS_VIEWCONTEXTMENU_USEBOTHTHISLAST "Use both text blocks (this one last)"
+    IDS_VIEWCONTEXTMENU_PREPENDTHIS "Prepend this block to left"
+    IDS_VIEWCONTEXTMENU_USETHIS "Use this block on left"
+    IDS_VIEWCONTEXTMENU_APPENDTHIS "Append this block to left"
+    IDS_VIEWCONTEXTMENU_PREPENDRIGHT "Prepend right block"
+    IDS_VIEWCONTEXTMENU_USERIGHT "Use right block"
+    IDS_VIEWCONTEXTMENU_APPENDRIGHT "Append right block"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_VIEWCONTEXTMENU_EOL "End of Line Style"
+    IDS_VIEWCONTEXTMENU_ENCODING "File Encoding"
+    IDS_VIEWCONTEXTMENU_MARKBLOCK "Mark this block"
+    IDS_VIEWCONTEXTMENU_UNMARKBLOCK "Unmark this block"
+    IDS_VIEWCONTEXTMENU_LEAVEONLYMARKEDBLOCKS "Leave only marked blocks"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SAVEASTITLE         "Save as..."
+    IDS_COMMANDLINEHELP     "Valid command line options are:\n/base:<path to base file>\n/basename:<name to show on the view title>\n/theirs:<path to their file>\n/theirsname:<name to show on the view title>\n/mine:<path to your file>\n/minename:<name to show on the view title>\n/merged:<path to resulting merged file>\n/mergedname:<name to show on the view title>\n/diff:<path to unified diff file>\n/patchpath:<path to folder>\n/saverequired\n/saverequiredonconflicts\n/oneway <forces the one-way view>\n/line:<line number to jump to>"
+    IDS_OPENDIFFFILETITLE   "Apply Patch..."
+    IDS_GETVERSIONOFFILETITLE "Fetching file..."
+    IDS_GETVERSIONOFFILE    "Fetching revision %s of file:"
+    IDS_WARNMODIFIEDLOOSECHANGES 
+                            "There are unsaved modifications!\nDo you want to save your changes?"
+    IDS_WARNMODIFIEDLOOSECHANGESOPTIONS 
+                            "Do you want to reload the documents to reflect the settings changes?\nNote: you will lose all changes you've made!"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_DIFF_DIFF       "The diffing engine aborted because of an error:\n%s"
+    IDS_ERR_DIFF_NEWLINES   "Cannot show diff because of inconsistent newlines in the file."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_FILE_OPEN       "Could not open the file\n%s"
+    IDS_ERR_FILE_BINARY     "The file\n%s\nis not a valid text file!"
+    IDS_ERR_FILE_NOTAFILE   "%s\nis a directory, not a file!\nTortoiseGitMerge can't diff directories."
+    IDS_ERR_FILE_TOOBIG     "The file is too big"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_OPEN            "Open files for diff or to apply a patch\nOpen files"
+    ID_FILE_SAVE            "Save the modified file\nSave file"
+    ID_FILE_SAVE_AS         "Save the modified file\nSave file"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTVERSION        "TortoiseGitMerge %d.%d.%d.%d - %s, %s\r\nlibsvn_diff %d.%d.%d, %s\r\napr %d.%d.%d\r\napr-util %d.%d.%d"
+    IDS_ABOUTVERSIONBOX     "TortoiseGitMerge %d.%d.%d.%d - %s, %s"
+    IDS_SETTINGSTITLE       "Settings"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_COMMONFILEFILTER    "All Files (*.*)|*.*||"
+    IDS_PATCHFILEFILTER     "Patchfiles (*.diff, *.patch)|*.diff;*.patch|All Files (*.*)|*.*||"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PATCH_ALL           "Patch all files"
+    IDS_PATCH_TITLE         "File patches"
+    IDS_DIFF_TITLE          "File diffs"
+    IDS_PATCH_SELECTED      "Patch selected files"
+    IDS_PATCH_PREVIEW       "Preview patched file"
+    IDS_PATCH_ITEMTT        "%s\nCould not be cleanly patched."
+    IDS_PATCH_COPYFROMCLIPBOARD "Open from clipboard"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_RELOAD          "Reloads the opened files and reverts all changes.\nReload"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NAVIGATE_PREVIOUSCONFLICT 
+                            "Go to the previous conflict\nPrevious conflict"
+    ID_NAVIGATE_NEXTCONFLICT "Go to the next conflict\nNext conflict"
+    ID_EDIT_MARKASRESOLVED  "Marks a file as resolved in Git\nMark as resolved"
+    ID_VIEW_SWITCHLEFT      "Switch the contents of the left and right view\nSwitch left and right view"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_SHOWFILELIST    "Hide/Show the patch file list\nHides or shows the patch file list"
+    ID_EDIT_USETHEIRBLOCK   "Use text block from 'theirs'\nUse 'theirs' text block"
+    ID_EDIT_USEMYBLOCK      "Use text block from 'mine'\nUse 'mine' text block"
+    ID_EDIT_USETHEIRTHENMYBLOCK 
+                            "Use text block from 'theirs' before 'mine'\nUse 'theirs' text block then 'mine'"
+    ID_EDIT_USEMINETHENTHEIRBLOCK 
+                            "Use text block from 'mine' before 'theirs'\nUse 'mine' text block then 'theirs'"
+    ID_VIEW_INLINEDIFFWORD  "Show Inline-Diff word by word\nInline diff word-wise"
+    ID_EDIT_CREATEUNIFIEDDIFFFILE 
+                            "Creates a patch file from the differences of the two files\nCreate patch file"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_WARNBETTERPATCHPATHFOUND 
+                            "The path\n%s\nseems not to match the paths in the patchfile.\nBut TortoiseGitMerge found the path\n%s\nmatches it better. Do you want to use the suggested path instead?"
+    IDS_NOTFOUNDVIEWTITLEINDICATOR "(not found)"
+    IDS_DELETEWHENEMPTY     "The file \n%s\nis empty.\nDo you want to remove the file?"
+    IDS_EMPTYLINETT         "(no line number)"
+    IDS_WARNMODIFIEDOUTSIDELOOSECHANGES 
+                            "Some file(s) have been changed outside TortoiseGitMerge.\nWould you like to reload and lose your changes?"
+    IDS_WARNMODIFIEDOUTSIDE "Some file(s) have been changed outside TortoiseGitMerge.\nDo you want to load the changes?"
+    IDS_WARNBETTERPATCHPATHFOUND_TASK2 
+                            "Path found that matches the patch better."
+    IDS_WARNBETTERPATCHPATHFOUND_TASK3 
+                            "Use the found path.\nApply the patch to\n%s"
+    IDS_WARNBETTERPATCHPATHFOUND_TASK4 
+                            "Use the original path.\nApply the patch to\n%s"
+    IDS_DELETEWHENEMPTY_TASK2 "File is empty."
+    IDS_DELETEWHENEMPTY_TASK3 "Delete\nThe file is removed."
+    IDS_DELETEWHENEMPTY_TASK4 "Cancel\nKeep the empty file."
+    IDS_ASKFORSAVE_TASK2    "Save modifications."
+    IDS_ASKFORSAVE_TASK3    "Save\nThe modifications are saved to\n%s"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_VIEWTITLE_THEIRS    "Theirs"
+    IDS_VIEWTITLE_MERGED    "Merged"
+    IDS_VIEWTITLE_MINE      "Mine"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_COLOURPICKER_CUSTOMTEXT "More colors..."
+    IDS_COLOURPICKER_DEFAULTTEXT "Automatic"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_VIEWSCROLLTIPTEXT   "Line: %*ld"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_EDIT_COPY           "&Copy"
+    IDS_EDIT_CUT            "C&ut"
+    IDS_EDIT_PASTE          "&Paste"
+    IDS_EDIT_TAB2SPACE      "Convert tabs to spaces"
+    IDS_EDIT_SPACE2TAB      "Convert spaces to tabs"
+    IDS_EDIT_TRIM           "Trim right"
+END
+
+STRINGTABLE
+BEGIN
+    IDC_STYLEBUTTON         "Change the style of the application\nChange Style"
+    ID_VIEW_APPLOOK_WIN7    "Windows 7"
+    ID_VIEW_APPLOOK_VS_2008 "Visual Studio 2008"
+    ID_VIEW_APPLOOK_WIN_2000 "Windows 2000"
+    ID_VIEW_APPLOOK_OFF_XP  "Office XP"
+    ID_VIEW_APPLOOK_WIN_XP  "Windows XP"
+    ID_VIEW_APPLOOK_OFF_2003 "Office 2003"
+    ID_VIEW_APPLOOK_VS_2005 "Visual Studio 2005"
+    ID_OFFICE2007           "Office 2007 colors"
+    ID_VIEW_APPLOOK_OFF_2007_BLUE "Blue Style"
+    ID_VIEW_APPLOOK_OFF_2007_BLACK "Black Style"
+    ID_VIEW_APPLOOK_OFF_2007_SILVER "Silver Style"
+    ID_VIEW_APPLOOK_OFF_2007_AQUA "Aqua Style"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_LINEDIFFBAR     "Show or hide the line diff bar\nToggle LineDiffBar"
+    ID_VIEW_LOCATORBAR      "Show or hide the locator bar\nToggle LocatorBar"
+    ID_EDIT_USELEFTBLOCK    "Use text block from the left view\nUse left block"
+    ID_EDIT_USELEFTFILE     "Use all content from the left view\nUse left file"
+    ID_EDIT_USEBLOCKFROMLEFTBEFORERIGHT 
+                            "Use block from left view before block from right view\nUse block from left before right"
+    ID_EDIT_USEBLOCKFROMRIGHTBEFORELEFT 
+                            "Use block from right view before block from left view\nUse block from right before left"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PATCH_SEARCHPATHTITLE "Searching for better path to apply patch..."
+    IDS_PATCH_SEARCHPATHLINE1 "scanning path:"
+    IDS_PATCH_PROGTITLE     "Patching"
+    IDS_PATCH_PATHINGFILE   "Patching file '%s'"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_COLLAPSED       "Collapse unchanged sections\nCollapse"
+    ID_VIEW_COMPAREWHITESPACES 
+                            "Compares all whitespaces when diffing\nCompare whitespaces"
+    ID_VIEW_IGNOREWHITESPACECHANGES 
+                            "Ignores changes in whitespaces when diffing\nIgnore whitespace changes"
+    ID_VIEW_IGNOREALLWHITESPACECHANGES 
+                            "Ignores all whitespace changes when diffing\nIgnore all whitespace changes"
+    ID_NAVIGATE_NEXTINLINEDIFF 
+                            "Go to the next inline difference\nNext inline difference"
+    ID_NAVIGATE_PREVINLINEDIFF 
+                            "Go to the previous inline difference\nPrevious inline difference"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_MOVEDBLOCKS     "Detect and highlight moved blocks"
+    ID_VIEW_WRAPLONGLINES   "Wrap long lines at the right border of the view\nWrap long lines"
+    ID_VIEW_INLINEDIFF      "Show Inline-Diff\nInline diff"
+    ID_EDIT_GOTOLINE        "Navigate to a specific line in the view\nGoto Line"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_APPNAME             "TortoiseGitMerge"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ERR_PATCHPATHS      "Both the path to the patch file and the target path must be absolute paths!"
+    IDS_ERR_ERROR           "Error"
+    IDS_ERR_INVALIDREGEX    "The regular expression is invalid!\nPlease enter a valid regular expression."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ASKFORSAVE_TASK4    "Quit\nExit TortoiseGitMerge without saving the modifications"
+    IDS_ASKFORSAVE_TASK5    "Cancel\nDon't quit TortoiseGitMerge"
+    IDS_ASKFORSAVE_TASK6    "Save as\nYou're asked where to save the file"
+    IDS_ASKFORSAVE_TASK7    "Don't save\nReload the views without saving the modifications"
+    IDS_ASKFORSAVE_TASK8    "Cancel\nDon't switch the views"
+    IDS_WARNMODIFIEDOUTSIDE_TASK2 "Do you want to load the changed files?"
+    IDS_WARNMODIFIEDOUTSIDE_TASK3 
+                            "Load changes\nChanges made in TortoiseGitMerge are lost and replaced with the new content."
+    IDS_WARNMODIFIEDOUTSIDE_TASK4 
+                            "Load changes\nThe views are updated with the new content."
+    IDS_WARNMODIFIEDOUTSIDE_TASK5 
+                            "Ignore changes\nIgnore the outside changes."
+    IDS_ERR_MAINFRAME_FILEHASCONFLICTS_TASK2 "Unresolved conflicts!"
+    IDS_ERR_MAINFRAME_FILEHASCONFLICTS_TASK3 
+                            "Save\nSave the file with the conflict markers."
+    IDS_ERR_MAINFRAME_FILEHASCONFLICTS_TASK4 
+                            "Cancel\nResolve the conflicts first."
+    IDS_ASKFORSAVE_NOSAVE_OPEN 
+                            "Don't save\nClose the views without saving the modifications"
+    IDS_ASKFORSAVE_CANCEL_OPEN "Cancel\nStay with current files"
+    IDS_ASKFORSAVE_CANCEL_OPTIONS "Cancel\nStay with current settings"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_GOTOLINE            "&Line number (%d - %d)"
+    IDS_GOTO_OUTOFRANGE     "The line number must be in between %d and %d"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_IGNORECOMMENTS  "Remove all comments before doing the diff so changes inside comments don't show as different"
+    ID_LOGOBUTTON           "TortoiseGitMerge"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APPLOOK              "Changes the style of the application"
+END
+
+STRINGTABLE
+BEGIN
+    ID_USEBLOCKS            "Click to see commands to move blocks of text\nUse text blocks"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_ASKFORSAVE_SAVELEFT "Save Left File\nThe modifications are saved to\n%s"
+    IDS_ASKFORSAVE_SAVELEFTAS 
+                            "Save Left File as\nYou're asked where to save the left file"
+    IDS_ASKFORSAVE_SAVERIGHT 
+                            "Save Right File\nThe modifications are saved to\n%s"
+    IDS_ASKFORSAVE_SAVERIGHTAS 
+                            "Save Right File as\nYou're asked where to save the right file"
+    IDS_ASKFORSAVE_SAVEALL2 "Save all\nBoth Files are saved"
+    IDS_SAVE                "Save File"
+    IDS_SAVE_MORE           "There are more editable views.\nWhat view do you want to save?"
+    IDS_ASKFORSAVE_SAVEBOTTOMAS 
+                            "Save Bottom File as\nYou're asked where to save the bottom file"
+    IDS_ASKFORSAVE_NEEDRESOLVE 
+                            "Keep resolving\nJump to first unresolved conflict"
+    IDS_ASKFORSAVEAS        "Save as"
+    IDS_ASKFORSAVEAS_MORE   "Select what file you want to save as"
+    IDS_ASKFORSAVEAS_MORECONFLICT 
+                            "Select what file you want to save as\nNote: There is unresolved conflict!"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_MARKASRESOLVED      "Do you want to mark the file\n%s\nas resolved?"
+    IDS_MARKASRESOLVED_TASK2 "File has no conflicts"
+    IDS_MARKASRESOLVED_TASK3 
+                            "Mark as resolved\nThe file status is changed to modified"
+    IDS_MARKASRESOLVED_TASK4 
+                            "Leave as conflicted\nThe conflict status of the file is kept"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_ENABLE          "Allow Editing for this view\nAllow Edit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_REGEXFILTER          "Regex Filter"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_TEXTIDENTICAL_MAIN  "The text is identical, but the files do not match!\nThe following differences were found:"
+    IDS_TEXTIDENTICAL_WHITESPACE "Whitespace changes (tabs, spaces)"
+    IDS_TEXTIDENTICAL_ENCODING "Encoding"
+    IDS_TEXTIDENTICAL_EOL   "Newlines"
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Switzerland) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DES)
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN_SWISS
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "..\\TortoiseMerge\\resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include <afxres.h>\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""TortoiseMerge.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include <afxres.rc>         // Standard components\r\n"
+    "#include <afxprint.rc>  // printing/print preview resources\r\n"
+    "#include <afxribbon.rc> // ribbon and control bar resources\r\n"
+    "#include <afxolecl.rc>  // OLE container resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // German (Switzerland) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "TortoiseMerge.rc2"  // non-Microsoft Visual C++ edited resources
+#include <afxres.rc>         // Standard components
+#include <afxprint.rc>  // printing/print preview resources
+#include <afxribbon.rc> // ribbon and control bar resources
+#include <afxolecl.rc>  // OLE container resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
