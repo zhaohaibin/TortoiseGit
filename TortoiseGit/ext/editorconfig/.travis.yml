@@ -1,0 +1,27 @@
+language: c
+
+compiler:
+  - gcc
+  - clang
+
+# Settings to try
+env:
+ - OPTIONS="-DCMAKE_BUILD_TYPE=Release -DBUILD_STATICALLY_LINKED_EXE=ON"
+ - OPTIONS="-DCMAKE_BUILD_TYPE=Release -DBUILD_STATICALLY_LINKED_EXE=OFF"
+
+# Run the Build script
+script:
+ - mkdir _build
+ - cd _build
+ - cmake .. -DCMAKE_INSTALL_PREFIX=../_install $OPTIONS
+ - cmake --build . --target install
+
+# Run Tests
+after_script:
+ - ctest -VV --output-on-failure .
+
+# Notify the mailing list
+notifications:
+ email:
+   on_success: change
+   on_failure: always
